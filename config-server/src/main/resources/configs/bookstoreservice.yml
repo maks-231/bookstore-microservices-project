@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: bookstoreservice
+management:
+  endpoint:
+    health:
+      diskspace:
+        enabled: true
+    beans:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+logging:
+  level:
+    com.netfliex: DEBUG
+    org.springframework: DEBUG
+    com:
+      mkyong: OFF
+      zaxxer: OFF
+    root: DEBUG
+eureka:
+  instance:
+    hostname: bookstoreservice
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://eurekaserver:8761/eureka
