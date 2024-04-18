@@ -19,19 +19,19 @@ services:
       backend:
         aliases:
           - "eurekaserver"
-  gatewayserver:
-    image: gatewayserver:alpine
-    ports:
-      - "8081:8081"
-    depends_on:
-      configserver:
-        condition: service_started
-      eurekaserver:
-        condition: service_started
-    networks:
-      backend:
-        aliases:
-          - "gatewayserver"
+#  gatewayserver:
+#    image: gatewayserver:alpine
+#    ports:
+#      - "8081:8081"
+#    depends_on:
+#      configserver:
+#        condition: service_started
+#      eurekaserver:
+#        condition: service_started
+#    networks:
+#      backend:
+#        aliases:
+#          - "gatewayserver"
   bookstoreservice:
     image: book-store:alpine
     environment:
@@ -42,8 +42,8 @@ services:
           condition: service_started
         eurekaserver:
           condition: service_started
-        gatewayserver:
-          condition: service_started
+#        gatewayserver:
+#          condition: service_started
     ports:
         - "8080:8080"
     links:

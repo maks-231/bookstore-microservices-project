@@ -30,4 +30,4 @@ COPY --from=build ${DEPENDENCY}/WEB-INF/classes /app
 RUN export ENCRYPT_KEY=IMSYMMETRIC
 
 #execute the application
-ENTRYPOINT ["java","-cp","app:app/lib/*","store.book.BookStoreApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","org.store.book.BookStoreApplication"]

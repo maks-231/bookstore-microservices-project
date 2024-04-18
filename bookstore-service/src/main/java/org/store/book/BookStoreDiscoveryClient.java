@@ -1,4 +1,4 @@
-package store.book;
+package org.store.book;
 
 import com.netflix.discovery.EurekaClient;
 

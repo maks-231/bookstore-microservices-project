@@ -8,12 +8,12 @@
   </parent>
   <artifactId>bookstore-service</artifactId>
   <packaging>war</packaging>
-  <name>store book service webapp</name>
+  <name>book store service</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <docker.image.name>book-store</docker.image.name>
-    <start-class>store.book.BookStoreApplication</start-class>
+    <start-class>org.store.book.BookStoreApplication</start-class>
   </properties>
 
   <dependencies>
