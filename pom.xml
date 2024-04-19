@@ -5,13 +5,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.bookstore</groupId>
-  <artifactId>bookStore</artifactId>
+  <artifactId>microservices</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
+
   <modules>
     <module>bookstore-service</module>
     <module>eureka-server</module>
     <module>config-server</module>
+    <module>gateway-server</module>
   </modules>
 
   <properties>
@@ -21,11 +23,19 @@
     <spotify.version>1.2.2</spotify.version>
     <docker.image.tag>alpine</docker.image.tag>
     <actuator.version>3.1.10</actuator.version>
+    <spring-boot.version>3.1.10</spring-boot.version>
     <starter-bootstrap.version>4.1.2</starter-bootstrap.version>
     <config.version>4.1.1</config.version>
     <spring-cloud.version>2022.0.4</spring-cloud.version>
+    <spring-boot-autoconfigure.version>3.1.10</spring-boot-autoconfigure.version>
     <spring-boot-starter-web.vertion>3.1.10</spring-boot-starter-web.vertion>
     <spring-cloud-starter-netflix-eureka.vertion>4.1.1</spring-cloud-starter-netflix-eureka.vertion>
+    <spring-cloud-starter-netflix-eureka-client.vertion>4.1.1</spring-cloud-starter-netflix-eureka-client.vertion>
+    <spring-cloud-starter-netflix-eureka-server.vertion>4.1.1</spring-cloud-starter-netflix-eureka-server.vertion>
+    <spring-cloud-starter-gateway.vertion>4.1.1</spring-cloud-starter-gateway.vertion>
+    <spring-webflux.vertion>6.0.15</spring-webflux.vertion>
+    <gson.vertion>2.10.1</gson.vertion>
+    <jackson-core.vertion>2.17.0</jackson-core.vertion>
   </properties>
 
   <dependencies>
@@ -44,6 +54,12 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
       <version>${actuator.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
