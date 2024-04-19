@@ -16,7 +16,6 @@ spring:
             - RewritePath=/bookstore/(?<path>.*), /$\{path}
   application:
     name: gatewayserver
-#  http://localhost:8081/bookstore/service-instances/greeting
 
 server:
   port: 8081

@@ -7,40 +7,42 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>eureka-server</artifactId>
+  <artifactId>gateway-server</artifactId>
   <packaging>war</packaging>
+  <description>Api Gateway</description>
 
-  <name>eureka-server</name>
+  <name>gateway-server</name>
   <url>http://maven.apache.org</url>
 
   <properties>
-    <docker.image.name>eurekaserver</docker.image.name>
-    <start-class>org.eureka.server.EurekaServerApplication</start-class>
+    <docker.image.name>gatewayserver</docker.image.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-server -->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-      <version>${spring-cloud-starter-netflix-eureka-server.vertion}</version>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+      <version>${spring-cloud-starter-netflix-eureka-client.vertion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>${spring-boot-starter-web.vertion}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-loadbalancer
-      </artifactId>
+      <artifactId>spring-cloud-starter-gateway</artifactId>
+      <version>${spring-cloud-starter-gateway.vertion}</version>
     </dependency>
     <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>${jackson-core.vertion}</version>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webflux</artifactId>
+      <version>${spring-webflux.vertion}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
     <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>${gson.vertion}</version>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
     </dependency>
   </dependencies>
 
@@ -49,6 +51,19 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+            <configuration>
+              <classifier>spring-boot</classifier>
+              <mainClass>
+                com.telegram.bot.quickpunch.QuickPunchApplication
+              </mainClass>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
@@ -68,11 +83,13 @@
                   <filtering>true</filtering>
                 </resource>
               </resources>
+              <nonFilteredFileExtensions>
+                <nonFilteredFileExtension>jks</nonFilteredFileExtension>
+              </nonFilteredFileExtensions>
             </configuration>
           </execution>
         </executions>
       </plugin>
-      <!-- This plugin is used to create a docker image and publish the image to docker hub-->
       <plugin>
         <groupId>com.spotify</groupId>
         <artifactId>docker-maven-plugin</artifactId>
