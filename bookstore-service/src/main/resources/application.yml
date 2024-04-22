@@ -1,6 +1,13 @@
 spring:
   application:
     name: bookstoreservice
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/learning'
+    username: postgres
+    password: postgres
+  liquibase:
+    change-log: classpath:db/changelog/changelog.sql
+
 management:
   endpoint:
     health:
