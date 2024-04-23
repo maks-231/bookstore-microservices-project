@@ -54,6 +54,12 @@
       <artifactId>jackson-core</artifactId>
       <version>${jackson-core.vertion}</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson-databind.vertion}</version>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
     <dependency>
       <groupId>com.google.code.gson</groupId>
@@ -67,7 +73,32 @@
     <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
-      <version>4.27.0</version>
+      <version>${liquibase.vertion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-maven-plugin</artifactId>
+      <version>${liquibase.vertion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-dbcp2</artifactId>
+      <version>${commons-dbcp2.vertion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons</artifactId>
+      <version>${spring-data-commons.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-relational -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-relational</artifactId>
+      <version>${spring-data-relational.version}</version>
     </dependency>
   </dependencies>
 
@@ -94,7 +125,7 @@
           <artifactId>maven-resources-plugin</artifactId>
           <executions>
             <execution>
-              <id>copy-resources</id>
+              <id>copy-resources-1</id>
               <!-- here the phase you need -->
               <phase>validate</phase>
               <goals>
@@ -111,6 +142,23 @@
                 <nonFilteredFileExtensions>
                   <nonFilteredFileExtension>jks</nonFilteredFileExtension>
                 </nonFilteredFileExtensions>
+              </configuration>
+            </execution>
+            <execution>
+              <id>copy-resources-2</id>
+              <!-- here the phase you need -->
+              <phase>validate</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${basedir}/target/classes</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>src/main/resources/bootstraps/${env}</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
               </configuration>
             </execution>
           </executions>
