@@ -19,6 +19,23 @@ services:
       backend:
         aliases:
           - "eurekaserver"
+  keycloak:
+    image: quay.io/keycloak/keycloak
+    restart: always
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
+    command:
+      - start-dev
+      - --import-realm
+    ports:
+      - "8180:8080"
+    networks:
+      backend:
+        aliases:
+          - "keycloak"
   gatewayserver:
     image: gatewayserver:alpine
     ports:

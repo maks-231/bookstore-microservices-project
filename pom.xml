@@ -29,6 +29,7 @@
     <spring-cloud.version>2022.0.4</spring-cloud.version>
     <spring-boot-autoconfigure.version>3.1.10</spring-boot-autoconfigure.version>
     <spring-boot-starter-web.vertion>3.1.10</spring-boot-starter-web.vertion>
+    <spring-boot-starter-oauth2-resource-server.version>3.1.10</spring-boot-starter-oauth2-resource-server.version>
     <spring-cloud-starter-netflix-eureka.vertion>4.1.1</spring-cloud-starter-netflix-eureka.vertion>
     <spring-cloud-starter-netflix-eureka-client.vertion>4.1.1</spring-cloud-starter-netflix-eureka-client.vertion>
     <spring-cloud-starter-netflix-eureka-server.vertion>4.1.1</spring-cloud-starter-netflix-eureka-server.vertion>
