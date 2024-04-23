@@ -37,7 +37,7 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-      <version>${spring-cloud-starter-netflix-eureka-client.vertion}</version>
+      <version>${spring-cloud-starter-netflix-eureka-client.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -47,24 +47,24 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-      <version>${spring-boot-starter-web.vertion}</version>
+      <version>${spring-boot-starter-web.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <version>${jackson-core.vertion}</version>
+      <version>${jackson-core.version}</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>${jackson-databind.vertion}</version>
+      <version>${jackson-databind.version}</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>${gson.vertion}</version>
+      <version>${gson.version}</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -73,17 +73,17 @@
     <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
-      <version>${liquibase.vertion}</version>
+      <version>${liquibase.version}</version>
     </dependency>
     <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-maven-plugin</artifactId>
-      <version>${liquibase.vertion}</version>
+      <version>${liquibase.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-dbcp2</artifactId>
-      <version>${commons-dbcp2.vertion}</version>
+      <version>${commons-dbcp2.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

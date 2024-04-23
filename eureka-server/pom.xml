@@ -24,7 +24,7 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-      <version>${spring-cloud-starter-netflix-eureka-server.vertion}</version>
+      <version>${spring-cloud-starter-netflix-eureka-server.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
@@ -34,13 +34,13 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <version>${jackson-core.vertion}</version>
+      <version>${jackson-core.version}</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>${gson.vertion}</version>
+      <version>${gson.version}</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
