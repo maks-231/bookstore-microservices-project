@@ -16,6 +16,29 @@
     <module>gateway-server</module>
   </modules>
 
+  <profiles>
+    <profile>
+      <id>Dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <maven.exec.skip>false</maven.exec.skip>
+        <env>DEV</env>
+        <spring.profiles.active>dev</spring.profiles.active>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>QA</id>
+      <properties>
+        <maven.exec.skip>false</maven.exec.skip>
+        <env>QA</env>
+        <spring.profiles.active>qa</spring.profiles.active>
+      </properties>
+    </profile>
+  </profiles>
+
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
