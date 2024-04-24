@@ -1,11 +1,29 @@
 version: '3.3'
 services:
+#  database:
+#    image: postgres:16-alpine
+#    ports:
+#      - "5438:5432"
+#    environment:
+#      POSTGRES_USER: "postgres"
+#      POSTGRES_PASSWORD: "postgres"
+#      POSTGRES_DB: "university"
+#    volumes:
+#      - ./init.sql:/docker-entrypoint-initdb.d/1-init.sql
+#      - ./data.sql:/docker-entrypoint-initdb.d/2-data.sql
+#    networks:
+#      backend:
+#        aliases:
+#          - "database"
+#    healthcheck:
+#      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
   configserver:
     image: configserver:alpine
     ports:
       - "8071:8071"
-    environment:
-      - "SPRING_PROFILES_ACTIVE=${env}"
     networks:
       backend:
         aliases:
@@ -14,8 +32,6 @@ services:
     image: eurekaserver:alpine
     ports:
       - "8761:8761"
-    environment:
-          - "SPRING_PROFILES_ACTIVE=${env}"
     depends_on:
       configserver:
         condition: service_started

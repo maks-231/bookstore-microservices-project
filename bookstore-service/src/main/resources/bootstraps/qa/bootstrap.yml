@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: bookstoreservice
+# The property server will take default property files
+#  profiles:
+#    active: qa
+  cloud:
+    config:
+      uri: http://configserver:8071

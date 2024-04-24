@@ -23,22 +23,22 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-      <version>${spring-cloud-starter-netflix-eureka-client.vertion}</version>
+      <version>${spring-cloud-starter-netflix-eureka-client.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-      <version>${spring-boot-starter-web.vertion}</version>
+      <version>${spring-boot-starter-web.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-gateway</artifactId>
-      <version>${spring-cloud-starter-gateway.vertion}</version>
+      <version>${spring-cloud-starter-gateway.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webflux</artifactId>
-      <version>${spring-webflux.vertion}</version>
+      <version>${spring-webflux.version}</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
