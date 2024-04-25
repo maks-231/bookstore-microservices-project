@@ -1,3 +1,6 @@
+gatewayserver:
+  property: Default property
+
 spring:
   main:
     web-application-type: REACTIVE
@@ -52,6 +55,6 @@ management:
 
 logging:
   level:
-    com.netfliex: DEBUG
+    com.netflix: DEBUG
 
 

@@ -1,6 +1,17 @@
+bookstoreservice:
+  property: Default property
+
 spring:
   application:
     name: bookstoreservice
+  datasource:
+    url: jdbc:postgresql://localhost:5432/learning
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:db/changelog/changelog.sql
+
 management:
   endpoint:
     health:
@@ -13,18 +24,22 @@ management:
     web:
       exposure:
         include: "*"
+
 logging:
   level:
-    com.netfliex: DEBUG
+    com.netflix: DEBUG
     org.springframework: DEBUG
     com:
       mkyong: OFF
       zaxxer: OFF
     root: DEBUG
+
 eureka:
   instance:
     hostname: bookstoreservice
   client:
+    register-with-eureka: false
+    fetch-registry: false
     healthcheck:
       enabled: true
     serviceUrl:

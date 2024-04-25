@@ -1,0 +1,11 @@
+eurekaserver:
+  property: Development property
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+eureka:
+  instance:
+    hostname: localhost

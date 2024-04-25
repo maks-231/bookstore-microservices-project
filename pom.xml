@@ -16,6 +16,27 @@
     <module>gateway-server</module>
   </modules>
 
+  <profiles>
+    <profile>
+      <id>Dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <env>dev</env>
+        <spring.profiles.active>dev</spring.profiles.active>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>QA</id>
+      <properties>
+        <env>qa</env>
+        <spring.profiles.active>qa</spring.profiles.active>
+      </properties>
+    </profile>
+  </profiles>
+
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
@@ -24,19 +45,25 @@
     <docker.image.tag>alpine</docker.image.tag>
     <actuator.version>3.1.10</actuator.version>
     <spring-boot.version>3.1.10</spring-boot.version>
+    <spring-data-commons.version>3.1.10</spring-data-commons.version>
+    <spring-data-relational.version>3.1.10</spring-data-relational.version>
     <starter-bootstrap.version>4.1.2</starter-bootstrap.version>
     <config.version>4.1.1</config.version>
     <spring-cloud.version>2022.0.4</spring-cloud.version>
     <spring-boot-autoconfigure.version>3.1.10</spring-boot-autoconfigure.version>
-    <spring-boot-starter-web.vertion>3.1.10</spring-boot-starter-web.vertion>
+    <spring-boot-starter-web.version>3.1.10</spring-boot-starter-web.version>
     <spring-boot-starter-oauth2-resource-server.version>3.1.10</spring-boot-starter-oauth2-resource-server.version>
-    <spring-cloud-starter-netflix-eureka.vertion>4.1.1</spring-cloud-starter-netflix-eureka.vertion>
-    <spring-cloud-starter-netflix-eureka-client.vertion>4.1.1</spring-cloud-starter-netflix-eureka-client.vertion>
-    <spring-cloud-starter-netflix-eureka-server.vertion>4.1.1</spring-cloud-starter-netflix-eureka-server.vertion>
-    <spring-cloud-starter-gateway.vertion>4.1.1</spring-cloud-starter-gateway.vertion>
-    <spring-webflux.vertion>6.0.15</spring-webflux.vertion>
-    <gson.vertion>2.10.1</gson.vertion>
-    <jackson-core.vertion>2.17.0</jackson-core.vertion>
+    <spring-cloud-starter-netflix-eureka.version>4.1.1</spring-cloud-starter-netflix-eureka.version>
+    <spring-cloud-starter-netflix-eureka-client.version>4.1.1</spring-cloud-starter-netflix-eureka-client.version>
+    <spring-cloud-starter-netflix-eureka-server.version>4.1.1</spring-cloud-starter-netflix-eureka-server.version>
+    <spring-cloud-starter-gateway.version>4.1.1</spring-cloud-starter-gateway.version>
+    <spring-webflux.version>6.0.15</spring-webflux.version>
+    <gson.version>2.10.1</gson.version>
+    <jackson-core.version>2.15.4</jackson-core.version>
+    <jackson-databind.version>2.15.4</jackson-databind.version>
+    <liquibase.version>4.27.0</liquibase.version>
+    <commons-dbcp2.version>2.12.0</commons-dbcp2.version>
+    <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
   </properties>
 
   <dependencies>
@@ -88,4 +115,22 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.3.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 </project>

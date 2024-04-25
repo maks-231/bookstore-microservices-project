@@ -1,13 +1,18 @@
+eurekaserver:
+  property: Default property
+
 spring:
   application:
     name: eurekaserver
+
 server:
   port: 8761
+
 eureka:
   instance:
     hostname: eurekaserver
     homePageUrl: http://${eureka.instance.hostname}:${server.port}/
-    statusPageUrl: http://${eureka.instance.hostname}:${server.port}actuator/info/
+    statusPageUrl: http://${eureka.instance.hostname}:${server.port}/actuator/info/
     healthCheckUrl: http://${eureka.instance.hostname}:${server.port}/actuator/health/
   client:
     fetch-registry: false
@@ -16,9 +21,10 @@ eureka:
       enabled: true
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
 logging:
   level:
-    com.netfliex: DEBUG
+    com.netflix: DEBUG
     org.springframework: DEBUG
     com:
       mkyong: OFF

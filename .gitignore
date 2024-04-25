@@ -1,0 +1,13 @@
+### Maven ###
+**/target/
+
+### Intellij ###
+**/.idea/
+!.idea/.name
+!.idea/vcs.xml
+**/*.iml
+**/*.ipr
+**/out/
+
+### VS Code ###
+**/.vscode/
