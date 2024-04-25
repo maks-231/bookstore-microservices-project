@@ -5,9 +5,10 @@ spring:
   application:
     name: bookstoreservice
   datasource:
-    url: 'jdbc:postgresql://localhost:5432/learning'
+    url: jdbc:postgresql://localhost:5432/learning
     username: postgres
     password: postgres
+    driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: classpath:db/changelog/changelog.sql
 

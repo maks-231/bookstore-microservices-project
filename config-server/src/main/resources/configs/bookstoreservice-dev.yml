@@ -4,13 +4,12 @@ bookstoreservice:
 spring:
   application:
     name: bookstoreservice
-
-datasource:
-    url: 'jdbc:postgresql://localhost:5432/learning'
+  datasource:
+    url: jdbc:postgresql://localhost:5432/learning
     username: postgres
     password: postgres
-
-liquibase:
+    driver-class-name: org.postgresql.Driver
+  liquibase:
     change-log: classpath:db/changelog/changelog.sql
 
 management:
@@ -44,4 +43,4 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eurekaserver:8761/eureka
