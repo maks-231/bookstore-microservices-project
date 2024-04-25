@@ -5,6 +5,11 @@ spring:
   application:
     name: bookstoreservice
 
+server:
+  error:
+    whitelabel:
+      enabled: false
+
 datasource:
     url: 'jdbc:postgresql://localhost:5432/learning'
     username: postgres
@@ -29,7 +34,7 @@ management:
 logging:
   level:
     com.netflix: DEBUG
-    org.springframework: DEBUG
+    org.springframework.web: ALL
     com:
       mkyong: OFF
       zaxxer: OFF
@@ -37,10 +42,10 @@ logging:
 
 eureka:
   instance:
-    hostname: bookstoreservice
+    hostname: localhost
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
     healthcheck:
       enabled: true
     serviceUrl:
