@@ -1,46 +1,16 @@
 bookstoreservice:
   property: Development property
 
-spring:
-  application:
-    name: bookstoreservice
-  datasource:
-    url: jdbc:postgresql://localhost:5432/learning
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
-  liquibase:
-    change-log: classpath:db/changelog/changelog.sql
-
-management:
-  endpoint:
-    health:
-      diskspace:
-        enabled: true
-    beans:
-      enabled: true
-  endpoints:
-    enabled-by-default: true
-    web:
-      exposure:
-        include: "*"
-
-logging:
-  level:
-    com.netflix: DEBUG
-    org.springframework: DEBUG
-    com:
-      mkyong: OFF
-      zaxxer: OFF
-    root: DEBUG
+server:
+  error:
+    whitelabel:
+      enabled: false
 
 eureka:
   instance:
-    hostname: bookstoreservice
+    hostname: localhost
   client:
-    register-with-eureka: false
-    fetch-registry: false
-    healthcheck:
-      enabled: true
+    register-with-eureka: true
+    fetch-registry: true
     serviceUrl:
-      defaultZone: http://eurekaserver:8761/eureka
+      defaultZone: http://localhost:8761/eureka

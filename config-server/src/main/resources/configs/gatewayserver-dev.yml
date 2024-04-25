@@ -2,59 +2,24 @@ gatewayserver:
   property: Development property
 
 spring:
-  main:
-    web-application-type: REACTIVE
   cloud:
     gateway:
-      enabled: true
-      discovery.locator:
-          enabled: true
-          lowerCaseServiceId: true
       routes:
         - id: bookstoreservice
-          uri: lb://bookstoreservice
+          uri: http://localhost:8080/
           predicates:
             - Path=/bookstore/**
           filters:
             - RewritePath=/bookstore/(?<path>.*), /$\{path}
-  application:
-    name: gatewayserver
-#  http://localhost:8081/bookstore/service-instances/greeting
 
 server:
-  port: 8081
+  error:
+    whitelabel:
+      enabled: false
 
 eureka:
   instance:
-    hostname: gatewayserver
-    preferIpAddress: true
+    hostname: localhost
   client:
-    registerWithEureka: true
-    fetchRegistry: true
-    healthcheck:
-      enabled: true
     serviceUrl:
-      defaultZone: http://eurekaserver:8761/eureka/
-
-management:
-  endpoints:
-    health:
-      show-details: always
-      diskspace:
-        enabled: true
-    beans:
-      enabled: true
-    shutdown:
-      enabled: true
-    info:
-      enabled: true
-    web:
-      exposure:
-        include: 'gateway'
-    enabled-by-default: true
-
-logging:
-  level:
-    com.netflix: DEBUG
-
-
+      defaultZone: http://localhost:8761/eureka/

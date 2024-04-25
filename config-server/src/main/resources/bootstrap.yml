@@ -10,6 +10,9 @@ spring:
           search-locations: classpath:/configs
 server:
   port: 8071
+  error:
+    whitelabel:
+      enabled: false
 
 management:
   endpoint:
