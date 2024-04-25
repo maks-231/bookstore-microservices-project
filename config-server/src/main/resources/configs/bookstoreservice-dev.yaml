@@ -13,6 +13,10 @@ spring:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
     enabled: false
+server:
+  error:
+    whitelabel:
+      enabled: false
 
 hibernate:
   show_sql: true
@@ -35,18 +39,18 @@ management:
 
 logging:
   level:
-    com.netflix: DEBUG
-    org.springframework: DEBUG
+    com.netflix: INFO
+    org.springframework: INFO
     com:
       mkyong: OFF
       zaxxer: OFF
-    root: DEBUG
+    root: OFF
 
 eureka:
   instance:
-    hostname: bookstoreservice
+    hostname: localhost
   client:
-    healthcheck:
-      enabled: true
+    register-with-eureka: true
+    fetch-registry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
