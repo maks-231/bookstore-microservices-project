@@ -1,12 +1,24 @@
+bookstoreservice:
+  property: Development property
+
 spring:
   application:
     name: bookstoreservice
   datasource:
-    url: 'jdbc:postgresql://localhost:5432/learning'
+    url: jdbc:postgresql://localhost:5432/learning
     username: postgres
     password: postgres
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
-    change-log: classpath:db/changelog/changelog.sql
+    enabled: false
+
+hibernate:
+  show_sql: true
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+  batch.size: 200
+  hbm2ddl.auto: update
 
 management:
   endpoint:
@@ -20,6 +32,7 @@ management:
     web:
       exposure:
         include: "*"
+
 logging:
   level:
     com.netflix: DEBUG
