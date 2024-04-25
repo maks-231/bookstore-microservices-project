@@ -2,8 +2,5 @@ spring:
   application:
     name: bookstoreservice
   # The property server will take default property files
-  profiles:
-    active: dev
-  cloud:
-    config:
-      uri: http://localhost:8071
+  config:
+    import: optional:configserver:http://configserver:8071
