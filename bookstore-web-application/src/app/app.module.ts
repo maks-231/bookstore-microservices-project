@@ -3,14 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {MenubarModule} from "primeng/menubar";
+import { GenresComponent } from './pages/genres/genres.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GenresComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+
+    //PrimeNG
+    MenubarModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
