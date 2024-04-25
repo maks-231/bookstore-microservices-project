@@ -11,8 +11,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     jpa:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
-  liquibase:
-    enabled: false
+
 server:
   error:
     whitelabel:
