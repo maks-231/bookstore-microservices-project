@@ -1,3 +1,10 @@
+Prepare to launch the project locally
+First of all you need to login in docker hub over IntelliJ IDEA terminal:
+`docker login`
+
+Create the new docker network (backend - the name of the network):
+`docker network create -d bridge backend`
+
 # microservices
 
 # Running locally
