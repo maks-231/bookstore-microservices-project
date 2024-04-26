@@ -44,6 +44,8 @@ eureka:
   instance:
     hostname: bookstoreservice
   client:
+    register-with-eureka: false
+    fetch-registry: false
     healthcheck:
       enabled: true
     serviceUrl:
