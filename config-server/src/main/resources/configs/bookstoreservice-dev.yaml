@@ -49,7 +49,9 @@ eureka:
   instance:
     hostname: localhost
   client:
-    register-with-eureka: true
-    fetch-registry: true
+    register-with-eureka: false
+    fetch-registry: false
+    healthcheck:
+      enabled: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
