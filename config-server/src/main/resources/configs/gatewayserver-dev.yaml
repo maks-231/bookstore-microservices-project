@@ -4,6 +4,8 @@ gatewayserver:
 spring:
   cloud:
     gateway:
+      default-filters:
+        - TokenRelay=
       routes:
         - id: bookstoreservice
           uri: http://localhost:8080/

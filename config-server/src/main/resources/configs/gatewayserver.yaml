@@ -10,6 +10,8 @@ spring:
       discovery.locator:
           enabled: true
           lowerCaseServiceId: true
+      default-filters:
+        - TokenRelay=
       routes:
         - id: bookstoreservice
           uri: lb://bookstoreservice
@@ -19,7 +21,22 @@ spring:
             - RewritePath=/bookstore/(?<path>.*), /$\{path}
   application:
     name: gatewayserver
-#  http://localhost:8081/bookstore/service-instances/greeting
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/spmia-realm
+      client:
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ostock
+            client-secret: 5eG9Qxp2TGkOVEpjTVhnMPnGE5NACFq9
+            authorization-grant-type: authorization_code
+            scope: openid,profile
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8180/realms/spmia-realm
 
 server:
   port: 8081

@@ -11,6 +11,11 @@ spring:
     driver-class-name: org.postgresql.Driver
     jpa:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/spmia-realm
 
 hibernate:
   show_sql: true
@@ -44,8 +49,8 @@ eureka:
   instance:
     hostname: bookstoreservice
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
     healthcheck:
       enabled: true
     serviceUrl:

@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 import jakarta.annotation.Resource;
+import lombok.extern.log4j.Log4j2;
 
 @RestController
 @RequestMapping("/service-instances")
+@Log4j2
 public class BookStoreDiscoveryClient {
   @Resource
   private DiscoveryClient discoveryClient;
@@ -34,8 +37,10 @@ public class BookStoreDiscoveryClient {
   }
 
   @RequestMapping("/greeting")
-  public String greeting() {
+  public String greeting(Principal principal) {
+    String username = principal != null ? principal.getName() : "<unauthenticated>";
+    String registeredName = eurekaClient.getApplication(appName) != null ? eurekaClient.getApplication(appName).getName() : "<unregistered>";
     return String.format(
-        "Hello from '%s'!", eurekaClient.getApplication(appName).getName());
+        "Hello %s from '%s'!", username, registeredName);
   }
 }

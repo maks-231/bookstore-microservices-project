@@ -21,6 +21,23 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  keycloak:
+    image: quay.io/keycloak/keycloak
+    restart: always
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
+    command:
+      - start-dev
+      - --import-realm
+    ports:
+      - "8180:8080"
+    networks:
+      backend:
+        aliases:
+          - "keycloak"
   configserver:
     image: configserver:alpine
     ports:
@@ -48,6 +65,8 @@ services:
       configserver:
         condition: service_started
       eurekaserver:
+        condition: service_started
+      keycloak:
         condition: service_started
     networks:
       backend:
