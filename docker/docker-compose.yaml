@@ -1,25 +1,26 @@
-version: '3.3'
+version: '3.8'
 services:
-#  database:
-#    image: postgres:16-alpine
-#    ports:
-#      - "5438:5432"
-#    environment:
-#      POSTGRES_USER: "postgres"
-#      POSTGRES_PASSWORD: "postgres"
-#      POSTGRES_DB: "university"
-#    volumes:
+  database:
+    image: postgres:15-alpine
+    ports:
+      - "5832:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "learning"
+    volumes:
+      - /D/PostgreSQL/15/data:/var/lib/postgresql/data
 #      - ./init.sql:/docker-entrypoint-initdb.d/1-init.sql
-#      - ./data.sql:/docker-entrypoint-initdb.d/2-data.sql
-#    networks:
-#      backend:
-#        aliases:
-#          - "database"
-#    healthcheck:
-#      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
-#      interval: 10s
-#      timeout: 5s
-#      retries: 5
+    #      - ./data.sql:/docker-entrypoint-initdb.d/2-data.sql
+    networks:
+      backend:
+        aliases:
+          - "database"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   configserver:
     image: configserver:alpine
     ports:
@@ -79,8 +80,8 @@ services:
           condition: service_started
         eurekaserver:
           condition: service_started
-        gatewayserver:
-          condition: service_started
+#        gatewayserver:
+#          condition: service_started
     ports:
         - "8080:8080"
     links:

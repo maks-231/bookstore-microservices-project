@@ -9,13 +9,19 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-  liquibase:
-    change-log: classpath:db/changelog/changelog.sql
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
   security:
     oauth2:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8180/realms/spmia-realm
+
+hibernate:
+  show_sql: true
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+  batch.size: 200
+  hbm2ddl.auto: update
 
 management:
   endpoint:
@@ -32,8 +38,8 @@ management:
 
 logging:
   level:
-    com.netflix: DEBUG
-    org.springframework: DEBUG
+    com.netflix: INFO
+    org.springframework: INFO
     com:
       mkyong: OFF
       zaxxer: OFF
@@ -49,8 +55,3 @@ eureka:
       enabled: true
     serviceUrl:
       defaultZone: http://eurekaserver:8761/eureka
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8180/realms/spmia-realm
