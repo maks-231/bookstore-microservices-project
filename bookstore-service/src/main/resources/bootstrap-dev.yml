@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: bookstoreservice
-  # The property server will take default property files
-  cloud:
-    config:
-      uri: http://localhost:8071

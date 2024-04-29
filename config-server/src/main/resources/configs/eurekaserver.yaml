@@ -24,8 +24,8 @@ eureka:
 
 logging:
   level:
-    com.netflix: DEBUG
-    org.springframework: DEBUG
+    com.netflix: INFO
+    org.springframework: INFO
     com:
       mkyong: OFF
       zaxxer: OFF
