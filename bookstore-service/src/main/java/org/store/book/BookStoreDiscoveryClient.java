@@ -39,7 +39,8 @@ public class BookStoreDiscoveryClient {
   @RequestMapping("/greeting")
   public String greeting(Principal principal) {
     String username = principal != null ? principal.getName() : "<unauthenticated>";
+    String registeredName = eurekaClient.getApplication(appName) != null ? eurekaClient.getApplication(appName).getName() : "<unregistered>";
     return String.format(
-        "Hello %s from '%s'!", username, eurekaClient.getApplication(appName).getName());
+        "Hello %s from '%s'!", username, registeredName);
   }
 }

@@ -5,12 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
-import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.server.SecurityWebFilterChain;
 
 /**
  * Copied from https://github.com/Streeling/RD_Archive/blob/main/amsoft/oauth2-resource-server/src/main/java/org/example/config/SecurityConfig.java.
@@ -24,7 +21,8 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
         .authorizeHttpRequests((authorize) -> authorize
-            .requestMatchers("/info").anonymous()
+            .requestMatchers("/service-instances/**").anonymous()
+            .requestMatchers("/error/**").anonymous()
             .anyRequest().authenticated()
         )
         .oauth2ResourceServer((oauth2) -> oauth2
