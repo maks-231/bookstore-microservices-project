@@ -13,7 +13,6 @@ services:
       backend:
         aliases:
           - "gatewayserver"
-
 networks:
   backend:
     external: true
