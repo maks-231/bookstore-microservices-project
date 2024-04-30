@@ -4,11 +4,3 @@ services:
     image: eurekaserver:alpine
     ports:
       - "8761:8761"
-    networks:
-      backend:
-        aliases:
-          - "configserver"
-#networks:
-#  backend:
-#    external: true
-#    driver: bridge
