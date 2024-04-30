@@ -1,16 +1,32 @@
-insert into public.faculties(title) values ('Faculty of Letters');
-insert into public.faculties(title) values ('Faculty of Exact');
-insert into public.faculties(title) values ('Economy and Environment Sciences');
-insert into public.faculties(title) values ('Sciences of Education and Psychology');
-insert into public.faculties(title) values ('Faculty of Law and Social Sciences');
+--changeset ibodnar:insert-data-into-genres-table splitStatements:false
+INSERT INTO genres (id, name)
+values (1, 'Fiction'),
+       (2, 'Mystery'),
+       (3, 'Thriller'),
+       (4, 'Romance'),
+       (5, 'Science'),
+       (6, 'Fantasy'),
+       (7, 'Biography'),
+       (8, 'Historical Fiction'),
+       (9, 'Horror'),
+       (10, 'Detective'),
+       (11, 'Adventure');
 
-insert into public.groups(group_title, year_of_study, faculty_id) values ('AW11M', 1, 1);
-insert into public.groups(group_title, year_of_study, faculty_id) values ('AB11A', 1, 2);
-insert into public.groups(group_title, year_of_study, faculty_id) values ('AW21M', 2, 3);
-insert into public.groups(group_title, year_of_study, faculty_id) values ('AD31M', 3, 1);
+--changeset ibodnar:insert-data splitStatements:false
+INSERT INTO publishers(id, name)
+values (1, 'Bloomsbury');
 
-insert into  public.students(first_name, last_name, date_of_birth, group_id, year_of_study, faculty_id, passport_id) values ('Artiom', 'Lupu', '2015-01-10', 1, 1, 1, 'A12432356');
-insert into  public.students(first_name, last_name, date_of_birth, group_id, year_of_study, faculty_id, passport_id) values ('Ion', 'Puiu', '2016-02-11', 1, 1, 1, 'A12453454');
-insert into  public.students(first_name, last_name, date_of_birth, group_id, year_of_study, faculty_id, passport_id) values ('Radu', 'Dumb', '2014-02-11', 2, 2, 3, 'A98987986');
-insert into  public.students(first_name, last_name, date_of_birth, group_id, year_of_study, faculty_id, passport_id) values ('Natalia', 'Balan', '2013-12-01', 2, 2, 3, 'A98987986');
-insert into  public.students(first_name, last_name, date_of_birth, group_id, year_of_study, faculty_id, passport_id) values ('Vadim', 'Georgita', '2012-08-15', 3, 3, 4, 'A992929986');
+INSERT INTO authors(id, name, email)
+values (1, 'J. K. Rowling', 'jkrowling@mail.com');
+
+INSERT INTO books(isbn, title, publisher_id, publication_date, genre_id, description, "language", pages, price)
+VALUES ('9781408855652', 'Harry Potter and the Philosopher''s Stone', 1, '2011-09-01', 6,
+        'Join Harry Potter as he sets out on the magical journey of a lifetime in the first book in J.K.Rowling''s multi-award-winning series', 'EN', 352, 10);
+
+INSERT INTO books(isbn, title, publisher_id, publication_date, genre_id, description, "language", pages, price)
+VALUES ('9781408855669', 'Harry Potter and the Chamber of Secrets', 1, '2014-09-01', 6,
+        'Join Harry Potter on the magical journey of a lifetime in the second book in J.K.Rowling''s multi-award-winning series', 'RU', 384, 10);
+
+INSERT INTO books_to_authors(book_isbn, author_id)
+VALUES ('9781408855652', 1),
+       ('9781408855669', 1);
