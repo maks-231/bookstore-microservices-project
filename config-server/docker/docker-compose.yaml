@@ -4,10 +4,3 @@ services:
     image: configserver:alpine
     ports:
       - "8071:8071"
-    networks:
-      backend:
-        aliases:
-          - "configserver"
-networks:
-  backend:
-    external: true
