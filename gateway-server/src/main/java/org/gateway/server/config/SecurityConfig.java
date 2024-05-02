@@ -15,8 +15,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
  * Copied from https://github.com/Streeling/RD_Archive/blob/main/amsoft/oauth2-login/src/main/java/org/example/config/SecurityConfig.java.
  * See also https://piotrminkowski.com/2024/03/01/microservices-with-spring-cloud-gateway-oauth2-and-keycloak/.
  */
-@Configuration
-@EnableWebFluxSecurity
+//@Configuration
+//@EnableWebFluxSecurity
 public class SecurityConfig {
 
   @Bean
