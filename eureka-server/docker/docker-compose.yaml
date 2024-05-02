@@ -11,6 +11,9 @@ services:
       backend:
         aliases:
           - "eurekaserver"
+  configserver:
+    image: configserver:alpine
+
 networks:
   backend:
     driver: bridge
