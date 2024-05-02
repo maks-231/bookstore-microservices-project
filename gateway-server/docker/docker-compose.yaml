@@ -4,13 +4,13 @@ services:
     image: gatewayserver:alpine
     ports:
       - "8081:8081"
-    depends_on:
-      configserver:
-        condition: service_started
-      eurekaserver:
-        condition: service_started
-      keycloak:
-        condition: service_started
+#    depends_on:
+#      configserver:
+#        condition: service_started
+#      eurekaserver:
+#        condition: service_started
+#      keycloak:
+#        condition: service_started
     networks:
       backend:
         aliases:
