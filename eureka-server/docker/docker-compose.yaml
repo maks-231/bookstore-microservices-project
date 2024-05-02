@@ -11,3 +11,6 @@ services:
       backend:
         aliases:
           - "eurekaserver"
+networks:
+  backend:
+    driver: bridge
