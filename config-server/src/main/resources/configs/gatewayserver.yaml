@@ -43,7 +43,7 @@ server:
 
 eureka:
   instance:
-    hostname: gatewayserver
+    hostname: 192.168.70.73
     preferIpAddress: true
   client:
     registerWithEureka: true
