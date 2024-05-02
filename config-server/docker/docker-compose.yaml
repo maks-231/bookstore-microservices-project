@@ -10,5 +10,4 @@ services:
           - "configserver"
 networks:
   backend:
-    external: true
     driver: bridge
