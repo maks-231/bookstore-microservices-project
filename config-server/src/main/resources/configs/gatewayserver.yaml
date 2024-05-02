@@ -21,22 +21,22 @@ spring:
             - RewritePath=/bookstore/(?<path>.*), /$\{path}
   application:
     name: gatewayserver
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8180/realms/spmia-realm
-      client:
-        registration:
-          keycloak:
-            provider: keycloak
-            client-id: ostock
-            client-secret: 5eG9Qxp2TGkOVEpjTVhnMPnGE5NACFq9
-            authorization-grant-type: authorization_code
-            scope: openid,profile
-        provider:
-          keycloak:
-            issuer-uri: http://localhost:8180/realms/spmia-realm
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:8180/realms/spmia-realm
+#      client:
+#        registration:
+#          keycloak:
+#            provider: keycloak
+#            client-id: ostock
+#            client-secret: 5eG9Qxp2TGkOVEpjTVhnMPnGE5NACFq9
+#            authorization-grant-type: authorization_code
+#            scope: openid,profile
+#        provider:
+#          keycloak:
+#            issuer-uri: http://localhost:8180/realms/spmia-realm
 
 server:
   port: 8081
