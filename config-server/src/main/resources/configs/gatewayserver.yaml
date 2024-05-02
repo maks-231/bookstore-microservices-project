@@ -25,7 +25,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8180/realms/spmia-realm
+          issuer-uri: http://192.168.70.73:8180/realms/spmia-realm
       client:
         registration:
           keycloak:
@@ -36,7 +36,7 @@ spring:
             scope: openid,profile
         provider:
           keycloak:
-            issuer-uri: http://localhost:8180/realms/spmia-realm
+            issuer-uri: http://192.168.70.73:8180/realms/spmia-realm
 
 server:
   port: 8081

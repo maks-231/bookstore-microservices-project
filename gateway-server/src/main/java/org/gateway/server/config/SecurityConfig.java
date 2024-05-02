@@ -36,6 +36,6 @@ public class SecurityConfig {
 
   @Bean
   public ReactiveJwtDecoder jwtDecoder() {
-    return ReactiveJwtDecoders.fromIssuerLocation("http://localhost:8180/realms/spmia-realm");
+    return ReactiveJwtDecoders.fromIssuerLocation("http://192.168.70.73:8180/realms/spmia-realm");
   }
 }
