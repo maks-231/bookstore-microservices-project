@@ -5,11 +5,11 @@ services:
     environment:
       CONFIGSERVER_URI: "http://configserver:8071"
       CONFIGSERVER_PORT: '8071'
-    depends_on:
-      configserver:
-        condition: service_started
-      eurekaserver:
-        condition: service_started
+#    depends_on:
+#      configserver:
+#        condition: service_started
+#      eurekaserver:
+#        condition: service_started
     ports:
       - "8080:8080"
     links:
