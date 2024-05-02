@@ -3,4 +3,4 @@ spring:
     name: bookstoreservice
   # The property server will take default property files
   config:
-    import: optional:configserver:http://configserver:8071
+    import: optional:configserver:http://192.168.70.73:8071
