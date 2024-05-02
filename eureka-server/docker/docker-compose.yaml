@@ -4,3 +4,10 @@ services:
     image: eurekaserver:alpine
     ports:
       - "8761:8761"
+    depends_on:
+      configserver:
+        condition: service_started
+    networks:
+      backend:
+        aliases:
+          - "eurekaserver"

@@ -51,7 +51,7 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://192.168.70.73:8761/eureka/
+      defaultZone: http://eurekaserver:8761/eureka/
 
 management:
   endpoints:
