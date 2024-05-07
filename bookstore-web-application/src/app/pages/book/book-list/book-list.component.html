@@ -1,0 +1,43 @@
+<div class="w-8 m-auto mt-5">
+    <div class="grid">
+        <div class="col-2">
+            <p-listbox [options]="genres" [(ngModel)]="selectedGenre" optionLabel="name" styleClass="-mt-3"
+                listStyleClass="w-full" [style]="{'width':'15rem'}" [listStyle]="{'max-height': '510px'}"
+                (onChange)="onGenreChangeEvent($event)" />
+
+            <p-button label="Reset" [style]="{'width':'15rem', 'margin-top': '12px'}" icon="pi pi-refresh"
+                severity="warning" (click)="loadAllBooks()"></p-button>
+
+        </div>
+        <div class="col-10">
+            <div class="grid">
+
+                <div class="ml-8" *ngIf="books.length < 1">
+                    <div>
+                        <h1 class="text-red-700 text-center">We apologize, but there are no books here yet</h1>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-3 grid">
+                    <div *ngFor="let book of books" class="gap-5 flex align-items-center justify-content-center grid"
+                        style="cursor: pointer">
+
+                        <p-card [style]="{ width: '300px', height: '580px'}" class="col-4"
+                            [routerLink]="'/book/' + book.isbn">
+                            <ng-template pTemplate="header">
+                                <img alt="Card"
+                                    [src]="book.image?.content || '../../../assets/img/missing-book-cover.jpg'"
+                                    class="border-round" style="width: 300px; height: 460px; object-fit: contain ;" />
+                            </ng-template>
+                            <div class="-mt-5">
+                                <p class="text-lg font-medium mb-0 mt-0">{{book.title}}</p>
+                                <p class="text-2xl font-bold text-red-700 mt-2 mb-0">{{book.price}} $</p>
+                            </div>
+                        </p-card>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

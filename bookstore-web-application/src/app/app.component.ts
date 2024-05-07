@@ -1,38 +1,54 @@
-import {Component} from '@angular/core';
-import {MenuItem} from "primeng/api";
+import { Component } from '@angular/core';
+import { MenuItem } from "primeng/api";
 
 @Component({
-             selector: 'app-root',
-             templateUrl: './app.component.html',
-             styleUrls: ['./app.component.css']
-           })
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
 export class AppComponent {
+
   items: MenuItem[] | undefined;
 
+  constructor() { }
+
   ngOnInit() {
+    this.populateMenuItems();
+  }
+
+  populateMenuItems() {
     this.items = [
       {
-        label: 'File',
-        icon: 'pi pi-fw pi-file',
+        label: 'Books',
+        icon: 'pi pi-fw pi-book',
+        routerLink: 'books',
+        items: [
+          {
+            separator: true
+          },
+          {
+            label: 'Add',
+            icon: 'pi pi-fw pi-plus',
+            routerLink: 'book/create'
+          }
+        ]
       },
       {
-        label: 'Edit',
+        label: 'Genres',
         icon: 'pi pi-fw pi-pencil',
+        routerLink: 'genres'
       },
       {
-        label: 'Users',
+        label: 'Authors',
         icon: 'pi pi-fw pi-user',
+        routerLink: 'authors'
       },
       {
-        label: 'Events',
-        icon: 'pi pi-fw pi-calendar',
-      },
-      {
-        label: 'Quit',
-        icon: 'pi pi-fw pi-power-off'
+        label: 'Publishers',
+        icon: 'pi pi-fw pi-verified',
+        routerLink: 'publishers'
       }
     ];
-
   }
 
 }
