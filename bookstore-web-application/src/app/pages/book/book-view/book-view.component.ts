@@ -19,9 +19,8 @@ export class BookViewComponent implements OnInit {
   constructor(
     private httpService: HttpService,
     private route: ActivatedRoute,
-    private confirmationService: ConfirmationService,
-    private router: Router
-  ) {
+    private router: Router,
+    private confirmationService: ConfirmationService) {
     this.bookIsbn = route.snapshot.params['isbn'];
   }
 
@@ -34,26 +33,19 @@ export class BookViewComponent implements OnInit {
   }
 
   deleteBook(event: Event) {
-    console.log(this.confirmationService);
-
-    if (confirm("Are you sure?")) {
-      this.httpService.deleteDataById(Environment.BOOK, this.book.isbn).subscribe((response: any) => {})
-    }
-
-    // this.confirmationService.confirm({
-    //   target: event.target as EventTarget,
-    //   message: `Are you sure you want to delete book: <b>${this.book.title}</b>?`,
-    //   header: 'Confirmation',
-    //   icon: 'pi pi-exclamation-triangle',
-    //   acceptLabel: 'Yes',
-    //   acceptIcon: "pi pi-check mr-2",
-    //   rejectLabel: 'No',
-    //   rejectIcon: "pi pi-times mr-2",
-    //   rejectButtonStyleClass: "p-button-text bg-primary",
-    //   accept: () => {
-    //     this.httpService.deleteDataById(Environment.BOOK, this.book.isbn).subscribe((response: any) => {
-    //     })
-    //   }
-    // });
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: `Are you sure you want to delete genre: <b>${this.book.title}</b>?`,
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Yes',
+      acceptIcon: "pi pi-check mr-2",
+      rejectLabel: 'No',
+      rejectIcon: "pi pi-times mr-2",
+      rejectButtonStyleClass: "p-button-text bg-primary",
+      accept: () => {
+        this.httpService.deleteDataById(Environment.BOOK, this.book.isbn).subscribe(() => this.router.navigate(['/books']));
+      }
+    });
   }
 }
