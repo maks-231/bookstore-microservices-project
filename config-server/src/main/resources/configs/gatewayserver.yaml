@@ -1,3 +1,6 @@
+gatewayserver:
+  property: Default property
+
 spring:
   main:
     web-application-type: REACTIVE
@@ -7,6 +10,8 @@ spring:
       discovery.locator:
           enabled: true
           lowerCaseServiceId: true
+      default-filters:
+        - TokenRelay=
       routes:
         - id: bookstoreservice
           uri: lb://bookstoreservice
@@ -16,13 +21,29 @@ spring:
             - RewritePath=/bookstore/(?<path>.*), /$\{path}
   application:
     name: gatewayserver
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/spmia-realm
+      client:
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ostock
+            client-secret: 5eG9Qxp2TGkOVEpjTVhnMPnGE5NACFq9
+            authorization-grant-type: authorization_code
+            scope: openid,profile
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8180/realms/spmia-realm
 
 server:
   port: 8081
 
 eureka:
   instance:
-    hostname: gatewayserver
+    hostname: 192.168.70.73
     preferIpAddress: true
   client:
     registerWithEureka: true
@@ -30,7 +51,7 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://eurekaserver:8761/eureka/
+      defaultZone: http://192.168.70.73:8761/eureka/
 
 management:
   endpoints:

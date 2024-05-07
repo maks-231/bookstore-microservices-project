@@ -9,8 +9,19 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-  liquibase:
-    change-log: classpath:db/changelog/changelog.sql
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+hibernate:
+  show_sql: true
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+  batch.size: 200
+  hbm2ddl.auto: update
 
 management:
   endpoint:
@@ -27,20 +38,20 @@ management:
 
 logging:
   level:
-    com.netflix: DEBUG
-    org.springframework: DEBUG
+    com.netflix: TRACE
+    org.springframework: INFO
     com:
       mkyong: OFF
       zaxxer: OFF
-    root: DEBUG
+    root: OFF
 
 eureka:
   instance:
-    hostname: bookstoreservice
+    hostname: localhost
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://eurekaserver:8761/eureka
+      defaultZone: http://localhost:8761/eureka
