@@ -1,2 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeicons/primeicons.css";
+
+.text-div {
+    background-image: linear-gradient(to right, #000 10%, rgba(255, 255, 255, 0) 0%);
+    background-position: 0 14px;
+    background-size: 10px 1px;
+    background-repeat: repeat-x;
+    width: 100%;
+    height: 25px;
+}
+
+.text-span {
+    background: #fff;
+    padding-right: 10px
+}
+
+.pull-right {
+    float: right;
+    padding-left: 10px
+}

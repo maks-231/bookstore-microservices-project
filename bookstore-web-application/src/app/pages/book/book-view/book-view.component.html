@@ -1,0 +1,293 @@
+<p-confirmDialog></p-confirmDialog>
+<div class="w-8 m-auto pt-5">
+
+    <i class="pi pi-fw pi-home" routerLink="/" style="cursor: pointer;"></i> | <a
+        routerLink="/builds">{{book.genre?.name}}</a> | {{book.title}}
+
+    <div style="float: right" class="-mt-3">
+        <p-button icon="pi pi-pencil" label="Edit" [routerLink]="'/book/edit/' + book.isbn"></p-button>
+        <p-button icon="pi pi-trash" label="Delete" class="ml-2" (click)="deleteBook($event)"
+            severity="danger"></p-button>
+    </div>
+
+    <p-divider type="solid" class="mt-2"></p-divider>
+
+    <div class="grid mt-2">
+        <div class="col-4">
+            <img [src]="book.image?.content || '../../../assets/img/missing-book-cover.jpg'"
+                style="height: 600px; width: 391px; object-fit: cover;" class="border-round">
+        </div>
+        <div class="col-8">
+
+            <div class="grid">
+                <div class="col-12">
+                    <h1>{{book.title}}</h1>
+
+                </div>
+                <div class="col-12">
+                    <h1 class="text-red-600">${{book.price}}</h1>
+                </div>
+
+                <p-panel header="Author(s)" class="col-12">
+                    <div class="text-div" *ngFor="let bookAuthor of book.authors">
+                        <span class="text-span">Name:</span>
+                        <span class="text-span pull-right font-bold">{{bookAuthor.name}}</span>
+                    </div>
+                </p-panel>
+
+                <p-panel header="Book info" class="col-6">
+                    <div class="text-div">
+                        <span class="text-span">Language:</span>
+                        <span class="text-span pull-right font-bold">{{book.language}}</span>
+                    </div>
+                    <div class="text-div">
+                        <span class="text-span">ISBN:</span>
+                        <span class="text-span pull-right font-bold">{{book.isbn}}</span>
+                    </div>
+                </p-panel>
+
+                <p-panel header="Publishing" class="col-6">
+                    <div class="text-div">
+                        <span class="text-span">Publisher:</span>
+                        <span class="text-span pull-right font-bold">{{book.publisher?.name}}</span>
+                    </div>
+                    <div class="text-div">
+                        <span class="text-span">Publication date:</span>
+                        <span class="text-span pull-right font-bold">{{book.publicationDate}}</span>
+                    </div>
+                </p-panel>
+
+
+            </div>
+        </div>
+    </div>
+
+    <p-divider></p-divider>
+
+    <div class="grid">
+        <div class="col-12">
+            <div class="ql-container ql-snow" style="border-width: 0;" class="m-auto mt-5">
+                <div class="ql-editor" [innerHTML]="book.description">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- 
+
+
+<div class="w-8 m-auto pt-5">
+
+    <i class="pi pi-fw pi-home" routerLink="/" style="cursor: pointer;"></i> | <a routerLink="/builds">Готовые
+        сборки</a> | {{build.name}}
+
+    <p-divider type="solid"></p-divider>
+
+    <div class="grid">
+        <div class="col-5">
+            <p-galleria [value]="build.images"
+                [containerStyle]="{ 'max-width': '400px', 'min-height': '400px', 'max-height': '400px' }"
+                [numVisible]="5" [indicatorsPosition]="'bottom'" [showIndicators]="true" [showThumbnails]="false"
+                [showIndicatorsOnItem]="false">
+                <ng-template pTemplate="item" let-item>
+                    <img [src]="item.content" style="width: 400px; height: 350px; object-fit: contain;" />
+                </ng-template>
+
+            </p-galleria>
+        </div>
+
+        <div class="col-7">
+            <h1>{{build.name}}</h1>
+            <p-divider type="dotted"></p-divider>
+            <h1><b>{{build.price}}</b> лей</h1>
+            <h3 class="font-light">Наличие: <b>{{build.stockAvailability | stockAvailability}}</b></h3>
+            <h3 class="font-light">Состояние: <b>{{build.condition | condition}}</b></h3>
+            <h3 class="font-light">Назначение: <b>{{build.buildPurpose | buildPurpose}}</b></h3>
+            <p-button class="mt-6" icon="pi pi-shopping-cart" label="Купить" (click)="contactFormVisible = true"></p-button>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="col-12">
+            <p-accordion [activeIndex]="0">
+                <p-accordionTab header="Спецификации">
+                    <div class="grid">
+                        <div class="col-6">
+                            <p-panel header="Материнская плата" class="col-6">
+                                <div class="text-div">
+                                    <span class="text-span">Название:</span>
+                                    <span class="text-span pull-right font-bold">{{build.motherBoardName}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Чипсет: </span>
+                                    <span class="text-span pull-right font-bold">{{build.motherBoardChipset}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Сокет: </span>
+                                    <span class="text-span pull-right font-bold">{{build.motherBoardSocket}}</span>
+                                </div>
+                            </p-panel>
+
+                            <p-panel header="Оперативная память" class="col-6">
+                                <div class="text-div">
+                                    <span class="text-span">Производитель: </span>
+                                    <span class="text-span pull-right font-bold">{{build.ramModel}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Тип: </span>
+                                    <span class="text-span pull-right font-bold">{{build.ramType}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Тактовая частота: </span>
+                                    <span class="text-span pull-right font-bold">{{build.ramFreq}} mHz</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Объем (общий): </span>
+                                    <span class="text-span pull-right font-bold">{{build.ramSize}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span"># планок: </span>
+                                    <span class="text-span pull-right font-bold">{{build.ramStickNumber}}</span>
+                                </div>
+                            </p-panel>
+
+                            <p-panel header="Память" class="col-6">
+                                <div class="text-div">
+                                    <span class="text-span">Модель SSD: </span>
+                                    <span class="text-span pull-right font-bold">{{build.romSsdName}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Общий объем (Гб): </span>
+                                    <span class="text-span pull-right font-bold">{{build.romSsdCapacity}} GB</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Модель HDD: </span>
+                                    <span class="text-span pull-right font-bold">{{build.romHddName ||
+                                        'Отсутствует'}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Общий объем (Гб): </span>
+                                    <span class="text-span pull-right font-bold">{{build.romHddCapacity != 0 ?
+                                        build.romHddCapacity + 'GB' : 'Отсутствует'}}</span>
+                                </div>
+                            </p-panel>
+
+                            <p-panel header="Корпус" class="col-6">
+                                <div class="text-div">
+                                    <span class="text-span">Производитель: </span>
+                                    <span class="text-span pull-right font-bold">{{build.caseName}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Модель: </span>
+                                    <span class="text-span pull-right font-bold">{{build.caseModel}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Форм фактор: </span>
+                                    <span class="text-span pull-right font-bold">{{build.caseFormFactor |
+                                        caseFormFactor}}</span>
+                                </div>
+                            </p-panel>
+                        </div>
+
+                        <div class="col-6">
+                            <p-panel header="Процессор" class="col-6">
+                                <div class="text-div">
+                                    <span class="text-span">Вендор: </span>
+                                    <span class="text-span pull-right font-bold">{{build.cpuVendor}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Модель: </span>
+                                    <span class="text-span pull-right font-bold">{{build.cpuModel}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Количество ядер: </span>
+                                    <span class="text-span pull-right font-bold">{{build.cpuCores}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Количество потоков: </span>
+                                    <span class="text-span pull-right font-bold">{{build.cpuThreads}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Тактовая частота: </span>
+                                    <span class="text-span pull-right font-bold">{{build.cpuFreq}} mHz</span>
+                                </div>
+                            </p-panel>
+
+                            <p-panel header="Видеокарта" class="col-6">
+                                <div class="text-div">
+                                    <span class="text-span">Вендор: </span>
+                                    <span class="text-span pull-right font-bold">{{build.gpuVendor}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Модель: </span>
+                                    <span class="text-span pull-right font-bold">{{build.gpuModel}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Объем: </span>
+                                    <span class="text-span pull-right font-bold">{{build.gpuCapacity}} GB</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Тип памяти: </span>
+                                    <span class="text-span pull-right font-bold">{{build.gpuMemoryType}}</span>
+                                </div>
+                            </p-panel>
+
+                            <p-panel header="Блок питания" class="col-6">
+                                <div class="text-div">
+                                    <span class="text-span">Производитель: </span>
+                                    <span class="text-span pull-right font-bold">{{build.psuName}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Модель: </span>
+                                    <span class="text-span pull-right font-bold">{{build.psuModel}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Мощность: </span>
+                                    <span class="text-span pull-right font-bold">{{build.psuPower}} Вт</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Сертификат качества: </span>
+                                    <span class="text-span pull-right font-bold">{{build.psuCertificate |
+                                        psuCertificate}}</span>
+                                </div>
+                            </p-panel>
+
+                            <p-panel header="Охлаждение" class="col-6">
+                                <div class="text-div">
+                                    <span class="text-span">Тип охлаждения: </span>
+                                    <span class="text-span pull-right font-bold">{{build.coolerType |
+                                        coolerType}}</span>
+                                </div>
+                                <div class="text-div">
+                                    <span class="text-span">Модель: </span>
+                                    <span class="text-span pull-right font-bold">{{build.coolerName}}</span>
+                                </div>
+                            </p-panel>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+    </div>
+
+
+
+    <div class="ql-container ql-snow" style="border-width: 0;" class="m-auto mt-5">
+        <div class="ql-editor" [innerHTML]="build.description">
+        </div>
+    </div>
+
+</div>
+
+<p-dialog header="Оформить товар" [modal]="true" [(visible)]="contactFormVisible"
+    [style]="{width: '50vw', height: '26vh'}" [draggable]="false">
+    <div>
+        <app-contact-form (contactFormSubmitEvent)="placeProductOrder($event)"></app-contact-form>
+    </div>
+</p-dialog>
+
+<p-toast></p-toast> -->
