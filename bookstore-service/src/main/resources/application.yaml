@@ -1,3 +1,10 @@
+book-store-service:
+  property: Default property
+  host-db-host: 192.168.70.73
+  db-port: 5832
+  db-name: learning
+  driver-name: org.postgresql.Driver
+
 spring:
   application:
     name: bookstoreservice
