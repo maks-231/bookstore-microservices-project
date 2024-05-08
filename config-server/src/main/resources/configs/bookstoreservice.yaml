@@ -1,21 +1,25 @@
-bookstoreservice:
+book-store-service:
   property: Default property
+  host-db-host: 192.168.70.73
+  db-port: 5832
+  db-name: learning
+  driver-name: org.postgresql.Driver
 
 spring:
   application:
     name: bookstoreservice
   datasource:
-    url: jdbc:postgresql://192.168.70.73:5432/learning
+    url: jdbc:postgresql://${book-store-service.host-db-host}:${book-store-service.db-port}/${book-store-service.db-name}
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
     jpa:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8180/realms/spmia-realm
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:8180/realms/spmia-realm
 
 hibernate:
   show_sql: true

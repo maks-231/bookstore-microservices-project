@@ -13,8 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
  * Copied from https://github.com/Streeling/RD_Archive/blob/main/amsoft/oauth2-resource-server/src/main/java/org/example/config/SecurityConfig.java.
  * See also https://piotrminkowski.com/2024/03/01/microservices-with-spring-cloud-gateway-oauth2-and-keycloak/.
  */
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class SecurityConfig {
 
   @Bean
