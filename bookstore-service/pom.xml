@@ -114,7 +114,7 @@
               <configuration>
                 <classifier>spring-boot</classifier>
                 <mainClass>
-                  com.telegram.bot.quickpunch.QuickPunchApplication
+                  org.store.book.BookStoreApplication
                 </mainClass>
               </configuration>
             </execution>

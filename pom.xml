@@ -54,6 +54,8 @@
     <spring-boot-starter-web.version>3.1.10</spring-boot-starter-web.version>
     <spring-boot-starter-oauth2-resource-server.version>3.1.10</spring-boot-starter-oauth2-resource-server.version>
     <spring-boot-starter-oauth2-client.version>3.1.10</spring-boot-starter-oauth2-client.version>
+    <spring-boot-starter-oauth2-server.version>3.1.10</spring-boot-starter-oauth2-server.version>
+    <spring-security-oauth2-jose.version>6.2.3</spring-security-oauth2-jose.version>
     <spring-boot-starter-security.version>3.1.10</spring-boot-starter-security.version>
     <spring-cloud-starter-netflix-eureka.version>4.1.1</spring-cloud-starter-netflix-eureka.version>
     <spring-cloud-starter-netflix-eureka-client.version>4.1.1</spring-cloud-starter-netflix-eureka-client.version>

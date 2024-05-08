@@ -15,27 +15,21 @@ import static org.springframework.security.config.Customizer.withDefaults;
  * Copied from https://github.com/Streeling/RD_Archive/blob/main/amsoft/oauth2-login/src/main/java/org/example/config/SecurityConfig.java.
  * See also https://piotrminkowski.com/2024/03/01/microservices-with-spring-cloud-gateway-oauth2-and-keycloak/.
  */
-//@Configuration
-//@EnableWebFluxSecurity
+@Configuration
+@EnableWebFluxSecurity
 public class SecurityConfig {
 
   @Bean
   public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-    http
-        .authorizeExchange(authorize -> authorize
-            .pathMatchers("/bookstore/service-instances/**").permitAll()
-            .anyExchange().authenticated()
-        )
+    http.authorizeExchange(auth -> auth.anyExchange().authenticated())
         .oauth2Login(withDefaults())
-        .oauth2ResourceServer((oauth2) -> oauth2
-            .jwt(Customizer.withDefaults())
-        );
-
+        .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()));
+    http.csrf(ServerHttpSecurity.CsrfSpec::disable);
     return http.build();
   }
 
-  @Bean
-  public ReactiveJwtDecoder jwtDecoder() {
-    return ReactiveJwtDecoders.fromIssuerLocation("http://localhost:8180/realms/spmia-realm");
-  }
+//  @Bean
+//  public ReactiveJwtDecoder jwtDecoder() {
+//    return ReactiveJwtDecoders.fromIssuerLocation("http://localhost:8180/realms/demo");
+//  }
 }

@@ -63,6 +63,8 @@ services:
     ports:
       - "8081:8081"
     environment:
+      CONFIGSERVER_URI: "http://configserver:8071"
+      CONFIGSERVER_PORT: "8071"
       SPRING_PROFILES_ACTIVE: dev
     depends_on:
       configserver:
@@ -80,7 +82,6 @@ services:
     environment:
       CONFIGSERVER_URI: "http://configserver:8071"
       CONFIGSERVER_PORT: "8071"
-      environment:
       SPRING_PROFILES_ACTIVE: dev
     depends_on:
       configserver:

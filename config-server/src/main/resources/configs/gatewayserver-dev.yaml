@@ -2,26 +2,80 @@ gatewayserver:
   property: Development property
 
 spring:
+  main:
+    web-application-type: REACTIVE
   cloud:
     gateway:
+      enabled: true
+      discovery.locator:
+        enabled: true
+        lowerCaseServiceId: true
       default-filters:
         - TokenRelay=
       routes:
         - id: bookstoreservice
-          uri: http://localhost:8080/
+          uri: lb://bookstoreservice
           predicates:
             - Path=/bookstore/**
           filters:
             - RewritePath=/bookstore/(?<path>.*), /$\{path}
+  application:
+    name: gatewayserver
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://keycloak:8180/realms/demo/protocol/openid-connect/certs
+      client:
+        registration:
+          spring-with-test-scope:
+            provider: keycloak
+            client-id: spring-with-test-scope
+            client-secret: Te1NaRWufkizzURTGVSqsFMDp4pv5Klg
+            authorization-grant-type: authorization_code
+            scope: openid,profile
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8180/realms/demo
+#server:
+#  error:
+#    whitelabel:
+#      enabled: false
 
-server:
-  error:
-    whitelabel:
-      enabled: false
+logging:
+  level:
+    com.netfliex: DEBUG
+    org.springframework: DEBUG
+    com:
+      mkyong: OFF
+      zaxxer: OFF
+    root: OFF
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: gatewayserver
+    preferIpAddress: true
   client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eurekaserver:8761/eureka/
+
+management:
+  endpoints:
+    health:
+      show-details: always
+      diskspace:
+        enabled: true
+    beans:
+      enabled: true
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    web:
+      exposure:
+        include: 'gateway'
+    enabled-by-default: true

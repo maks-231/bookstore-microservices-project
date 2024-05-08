@@ -43,11 +43,17 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+      <version>${spring-boot-starter-oauth2-server.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-oauth2-client</artifactId>
       <version>${spring-boot-starter-oauth2-client.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-oauth2-jose</artifactId>
+      <version>${spring-security-oauth2-jose.version}</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
