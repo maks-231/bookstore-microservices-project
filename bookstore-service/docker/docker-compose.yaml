@@ -15,5 +15,8 @@ services:
 #    links:
 #      - eurekaserver
 #      - configserver
-    networks:
-      - backend
+#    networks:
+#      - backend
+networks:
+  backend:
+    driver: bridge
