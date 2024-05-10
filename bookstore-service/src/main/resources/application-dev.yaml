@@ -1,13 +1,9 @@
-book-store-service:
-  property: Default property
-  host-db-host: localhost
-  db-port: 5432
-  db-name: learning
-  driver-name: org.postgresql.Driver
-
 spring:
+  main:
+    lazy-initialization: true
   application:
     name: bookstoreservice
   # The property server will take default property files
   config:
     import: optional:configserver:http://localhost:8071
+

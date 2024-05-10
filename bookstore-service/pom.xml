@@ -123,6 +123,9 @@
         <plugin>
           <groupId>org.liquibase</groupId>
           <artifactId>liquibase-maven-plugin</artifactId>
+          <configuration>
+            <propertyFile>target/classes/liquibase.properties</propertyFile>
+          </configuration>
           <executions>
             <execution>
               <id>book-store-db-update</id>
@@ -130,12 +133,6 @@
               <goals>
                 <goal>update</goal>
               </goals>
-              <configuration>
-                <changeLogFile>src/main/resources/db.changelog/db.changelog-master.xml</changeLogFile>
-                <driver>${book-store-service.driver-name}</driver>
-                <url>jdbc:postgresql://${${book-store-service.host-db-host}:${book-store-service.db-port}/${book-store-service.db-name}?prepareThreshold=0</url>
-<!--                <propertyFile>src/main/resources/liquibase.properties</propertyFile>-->
-              </configuration>
             </execution>
           </executions>
         </plugin>
@@ -195,4 +192,37 @@
         </plugin>
       </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <filters>
+          <filter>src/main/resources/default/db.properties</filter>
+        </filters>
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>
+      </build>
+    </profile>
+    <profile>
+      <id>Dev</id>
+      <build>
+        <filters>
+          <filter>src/main/resources/dev/db.properties</filter>
+        </filters>
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>
+      </build>
+    </profile>
+  </profiles>
 </project>
