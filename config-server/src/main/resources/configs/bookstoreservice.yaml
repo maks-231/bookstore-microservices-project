@@ -51,7 +51,8 @@ logging:
 
 eureka:
   instance:
-    hostname: bookstoreservice
+#    hostname: bookstoreservice
+    hostname: 192.168.70.74
   client:
     register-with-eureka: true
     fetch-registry: true

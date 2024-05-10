@@ -11,7 +11,7 @@ services:
 #      eurekaserver:
 #        condition: service_started
     ports:
-      - "8080:8080"
+      - "8085:8080"
 #    links:
 #      - eurekaserver
 #      - configserver
