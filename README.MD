@@ -33,7 +33,9 @@ http://localhost:8071/actuator/mappings
 
 5. In Edit configurations for GatewayServerApplication set Active profiles: dev; then run GatewayServerApplication.  
    5.1. Access http://localhost:8081/bookstore/service-instances/greeting to see service result. The response will be "Hello from 'BOOKSTORESERVICE'!"
-   5.2. Access http://localhost:8081/actuator/gateway/routes 
+   5.2. Access http://localhost:8081/actuator/gateway/routes
+
+6. In order to run Angular project (frontend part) you need to go to the root folder of the project and run `ng serve` 
 
 For authentication:
 

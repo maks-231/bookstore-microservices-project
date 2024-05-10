@@ -1,0 +1,86 @@
+<p-toast></p-toast>
+<div class="w-6 m-auto pt-5">
+
+    <h1> <i class="pi pi-fw pi-user" style="font-size: 2rem"></i> Authors</h1>
+
+    <p-divider></p-divider>
+
+    <p-card>
+        <p-table [value]="authors" dataKey="id" editMode="row" [tableStyle]="{'min-width': '50rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="w-1">#</th>
+                    <th class="w-4">Name</th>
+                    <th class="w-4">Email</th>
+                    <th class="w-2"><p-button (click)="dialogVisible = true" icon="pi pi-plus" label="Add"
+                            size="small"></p-button></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-author let-editing="editing" let-ri="rowIndex">
+                <tr [pEditableRow]="author">
+                    <td>
+                        {{ri + 1}}
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="author.name" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{author.name}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="author.email" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{author.email}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <div class="flex align-items-center justify-content-center gap-2">
+                            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+                                class="p-button-rounded p-button-text"></button>
+
+                            <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-trash"
+                                (click)="showDeleteConfirmDialog($event, author)"
+                                class="p-button-rounded p-button-text p-button-danger"></button>
+
+                            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+                                (click)="onRowEditSave(author)"
+                                class="p-button-rounded p-button-text p-button-success mr-2"></button>
+
+                            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                                class="p-button-rounded p-button-text p-button-danger"></button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+</div>
+
+<p-dialog header="Create new genre" [modal]="true" [(visible)]="dialogVisible" [style]="{width: '50vw'}"
+    [draggable]="false">
+    <div class="grid">
+        <div class="col-5">
+            <p-inputGroup>
+                <input type="text" pInputText placeholder="Enter new auhor name" [(ngModel)]="newAuthor.name" class="w-full" />
+            </p-inputGroup>
+        </div>
+        <div class="col-5">
+            <p-inputGroup>
+                <input type="text" pInputText placeholder="Enter new auhor email" [(ngModel)]="newAuthor.email" class="w-full" />
+            </p-inputGroup>
+        </div>
+        <div class="col-2">
+            <p-button label="Submit" (click)="onCreateNewAuthorClick()" class="w-full"></p-button>
+        </div>
+    </div>
+</p-dialog>
+
+<p-confirmDialog></p-confirmDialog>

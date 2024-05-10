@@ -1,0 +1,81 @@
+<div class="w-8 m-auto pt-5">
+    <div class="grid">
+        <div class="col-4">
+            <img [src]="book.image?.content || '../../../assets/img/click-me.jpg'"
+                style="height: 600px; width: 391px; object-fit: cover;" (click)="descriptionPictureInput.click()"
+                class="border-round">
+            <input #descriptionPictureInput type="file" hidden (change)="addDescriptionPicture($event)"
+                accept="image/png, image/jpeg">
+
+        </div>
+        <div class="col-8">
+
+            <h1 *ngIf="book.isbn == null">Create new book</h1>
+            <h1 *ngIf="book.isbn !== null">Edit book</h1>
+
+            <p-divider type="dotted"></p-divider>
+
+            <div class="grid">
+                <div class="col-12">
+                    <input id="book-title" [(ngModel)]="book.title" type="text" pInputText placeholder="Book title"
+                        class="w-full" />
+                </div>
+
+                <div class="col-12">
+                    <p-dropdown [options]="genres" [(ngModel)]="book.genre" optionLabel="name" [showClear]="true"
+                        placeholder="Select a genre" class="w-full" styleClass="w-full"></p-dropdown>
+                </div>
+
+                <div class="col-12">
+                    <p-dropdown [options]="publishers" [(ngModel)]="book.publisher" optionLabel="name"
+                        [showClear]="true" placeholder="Select a publisher" class="w-full"
+                        styleClass="w-full"></p-dropdown>
+                </div>
+
+                <div class="col-12">
+                    <p-calendar [(ngModel)]="book.publicationDate" class="w-full" styleClass="w-full"
+                        placeholder="Publication date"></p-calendar>
+                </div>
+
+                <div class="col-12">
+                    <p-inputMask mask="999-9-99-999999-9" [(ngModel)]="book.isbn" placeholder="ISBN"
+                        inputStyleClass="w-full" styleClass="w-full" class="w-full"></p-inputMask>
+                </div>
+
+                <div class="col-12">
+                    <p-multiSelect [options]="authors" [(ngModel)]="book.authors" placeholder="Select authors"
+                        optionLabel="name" display="chip" [showClear]="true" class="w-full"
+                        styleClass="w-full"></p-multiSelect>
+                </div>
+
+                <div class="col-6">
+                    <p-dropdown [options]="languages" [(ngModel)]="book.language" optionLabel="label" [showClear]="true"
+                        optionValue="key" placeholder="Select a language" class="w-full"
+                        styleClass="w-full"></p-dropdown>
+                </div>
+
+                <div class="col-6">
+                    <p-inputNumber [(ngModel)]="book.price" placeholder="Price" mode="currency" inputId="currency-usa"
+                        currency="USD" locale="us-US" class="w-full" styleClass="w-full" inputStyleClass="w-full">
+                    </p-inputNumber>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <p-divider></p-divider>
+
+    <div class="grid">
+        <div class="col-12">
+            <p-editor [(ngModel)]="book.description" styleClass="h-24rem"></p-editor>
+        </div>
+    </div>
+
+    <div class="grid mt-6">
+        <div class="col-12">
+            <p-button icon="pi pi-plus" label="Submit" [style]="{float: 'right'}" (click)="submitBook()"></p-button>
+        </div>
+    </div>
+
+</div>

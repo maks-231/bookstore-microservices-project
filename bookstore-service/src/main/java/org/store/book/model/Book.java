@@ -1,10 +1,15 @@
 package org.store.book.model;
 
+
+import org.hibernate.annotations.GenericGenerator;
+
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -29,7 +34,7 @@ public class Book {
 
   @Id
   @Column(name = "isbn")
-  private String sbn;
+  private String isbn;
 
   @Column(name = "title")
   private String title;
@@ -56,6 +61,10 @@ public class Book {
 
   @Column(name = "price")
   private Float price;
+
+  @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  @JoinColumn(name = "image_id")
+  private Image image;
 
   @ManyToMany
   @JoinTable(name = "books_to_authors",
