@@ -12,8 +12,8 @@ services:
 #        condition: service_started
     ports:
       - "8080:8080"
-    links:
-      - eurekaserver
-      - configserver
+#    links:
+#      - eurekaserver
+#      - configserver
     networks:
       - backend
