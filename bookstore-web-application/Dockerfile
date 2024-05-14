@@ -9,6 +9,7 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 #RUN npm config delete proxy
+RUN npm config set proxy http://192.168.70.12:3128
 RUN npm install -g @angular/cli -verbose
 
 RUN npm install
