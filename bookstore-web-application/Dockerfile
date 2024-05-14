@@ -1,6 +1,6 @@
 #stage 1
 #Start with a base image containing Java runtime
-FROM node:alpine as build
+FROM node:22-alpine3.18 as build
 
 # Add Maintainer Info
 LABEL maintainer=""
@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 
-RUN npm install -g @angular/cli
+RUN npm install @angular/cli
 
 RUN npm install
 
