@@ -8,8 +8,8 @@ LABEL maintainer=""
 WORKDIR /usr/src/app
 
 COPY . /usr/src/app
-RUN npm config delete proxy
-RUN npm install @angular/cli -verbose
+#RUN npm config delete proxy
+RUN npm install -g @angular/cli -verbose
 
 RUN npm install
 
