@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 
-RUN npm install @angular/cli
+RUN npm install @angular/cli -verbose
 
 RUN npm install
 
