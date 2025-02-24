@@ -3,7 +3,7 @@ services:
   bookstoreservice:
     image: book-store:alpine
     environment:
-      CONFIGSERVER_URI: "http://192.168.70.73:8071"
+      CONFIGSERVER_URI: "http://configserver:8071"
       CONFIGSERVER_PORT: '8071'
 #    depends_on:
 #      configserver:

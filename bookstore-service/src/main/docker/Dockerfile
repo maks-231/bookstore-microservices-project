@@ -27,7 +27,7 @@ COPY --from=build ${DEPENDENCY}/WEB-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/WEB-INF/classes /app
 
-RUN export ENCRYPT_KEY=IMSYMMETRIC
+#RUN export ENCRYPT_KEY=IMSYMMETRIC
 
 #execute the application
 ENTRYPOINT ["java","-cp","app:app/lib/*","org.store.book.BookStoreApplication"]

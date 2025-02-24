@@ -1,43 +1,27 @@
 version: '3.3'
 services:
-  database:
-    image: postgres:15-alpine
+  book-store-database:
+    image: postgres:16
     ports:
       - "5832:5432"
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
-      POSTGRES_DB: "learning"
+      POSTGRES_DB: "book-store"
+      PGDATA: /var/lib/postgresql/data
     volumes:
-      - /D/PostgreSQL/data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/1-init.sql
-      - ./data.sql:/docker-entrypoint-initdb.d/2-data.sql
+      - ~/PostgreSQL/16/book-store/data:/var/lib/postgresql/data
+#      - ./init.sql:/docker-entrypoint-initdb.d/1-init.sql
+#      - ./data.sql:/docker-entrypoint-initdb.d/2-data.sql
     networks:
       backend:
         aliases:
-          - "database"
+          - "book-store-database-master"
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 10s
       timeout: 5s
       retries: 5
-  keycloak:
-    image: quay.io/keycloak/keycloak
-    restart: always
-    environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    volumes:
-      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
-    command:
-      - start-dev
-      - --import-realm
-    ports:
-      - "8180:8080"
-    networks:
-      backend:
-        aliases:
-          - "keycloak"
   configserver:
     image: configserver:alpine
     ports:
@@ -50,9 +34,9 @@ services:
     image: eurekaserver:alpine
     ports:
       - "8761:8761"
-    depends_on:
-      configserver:
-        condition: service_started
+#    depends_on:
+#      configserver:
+#        condition: service_started
     networks:
       backend:
         aliases:
@@ -61,13 +45,13 @@ services:
     image: gatewayserver:alpine
     ports:
       - "8081:8081"
-    depends_on:
-      configserver:
-        condition: service_started
-      eurekaserver:
-        condition: service_started
-      keycloak:
-        condition: service_started
+#    depends_on:
+#      configserver:
+#        condition: service_started
+#      eurekaserver:
+#        condition: service_started
+#      keycloak:
+#        condition: service_started
     networks:
       backend:
         aliases:
@@ -77,11 +61,11 @@ services:
     environment:
         CONFIGSERVER_URI: "http://configserver:8071"
         CONFIGSERVER_PORT: "8071"
-    depends_on:
-        configserver:
-          condition: service_started
-        eurekaserver:
-          condition: service_started
+#    depends_on:
+#        configserver:
+#          condition: service_started
+#        eurekaserver:
+#          condition: service_started
 #        gatewayserver:
 #          condition: service_started
     ports:
@@ -94,4 +78,4 @@ services:
 networks:
   backend:
     external: true
-    driver: bridge
+#    driver: bridge

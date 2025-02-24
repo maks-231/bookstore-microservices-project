@@ -1,20 +1,21 @@
-version: '3.8'
+version: '2.2'
 services:
   database:
-    image: postgres:15-alpine
+    image: postgres:16-alpine
     ports:
       - "5832:5432"
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
-      POSTGRES_DB: "learning"
+      POSTGRES_DB: "book-store"
     volumes:
+      - ~/PostgreSQL/16/book-store/data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/1-init.sql
-    #      - ./data.sql:/docker-entrypoint-initdb.d/2-data.sql
+      - ./data.sql:/docker-entrypoint-initdb.d/2-data.sql
     networks:
       backend:
         aliases:
-          - "database"
+          - "book-store-database-master"
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 10s
@@ -51,9 +52,9 @@ services:
       - "8761:8761"
     environment:
       SPRING_PROFILES_ACTIVE: dev
-    depends_on:
-      configserver:
-        condition: service_started
+#    depends_on:
+#      configserver:
+#        condition: service_started
     networks:
       backend:
         aliases:
@@ -66,13 +67,13 @@ services:
       CONFIGSERVER_URI: "http://configserver:8071"
       CONFIGSERVER_PORT: "8071"
       SPRING_PROFILES_ACTIVE: dev
-    depends_on:
-      configserver:
-        condition: service_started
-      eurekaserver:
-        condition: service_started
-      keycloak:
-        condition: service_started
+#    depends_on:
+#      configserver:
+#        condition: service_started
+#      eurekaserver:
+#        condition: service_started
+#      keycloak:
+#        condition: service_started
     networks:
       backend:
         aliases:
@@ -83,11 +84,11 @@ services:
       CONFIGSERVER_URI: "http://configserver:8071"
       CONFIGSERVER_PORT: "8071"
       SPRING_PROFILES_ACTIVE: dev
-    depends_on:
-      configserver:
-        condition: service_started
-      eurekaserver:
-        condition: service_started
+#    depends_on:
+#      configserver:
+#        condition: service_started
+#      eurekaserver:
+#        condition: service_started
 #      gatewayserver:
 #        condition: service_started
     ports:

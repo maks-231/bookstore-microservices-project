@@ -1,8 +1,9 @@
 book-store-service:
   property: Default property
-  host-db-host: 192.168.70.73
+#  host-db-host: book-store-database-master
+  host-db-host: localhost
   db-port: 5832
-  db-name: learning
+  db-name: book-store
   driver-name: org.postgresql.Driver
 
 spring:
@@ -15,11 +16,10 @@ spring:
     driver-class-name: org.postgresql.Driver
     jpa:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          issuer-uri: http://localhost:8180/realms/spmia-realm
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: false
 
 hibernate:
   show_sql: true
@@ -51,12 +51,11 @@ logging:
 
 eureka:
   instance:
-#    hostname: bookstoreservice
-    hostname: 192.168.70.74
+    hostname: bookstoreservice
   client:
     register-with-eureka: true
     fetch-registry: true
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://192.168.70.73:8761/eureka
+      defaultZone: http://localhost:8761/eureka

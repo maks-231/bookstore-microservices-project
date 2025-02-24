@@ -16,6 +16,7 @@
   <properties>
     <docker.image.name>book-store</docker.image.name>
     <start-class>org.store.book.BookStoreApplication</start-class>
+    <java.version>17</java.version>
   </properties>
 
   <dependencies>
@@ -48,10 +49,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>org.springframework.boot</groupId>-->
-<!--      <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>-->
-<!--    </dependency>-->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>

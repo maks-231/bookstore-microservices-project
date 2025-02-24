@@ -5,7 +5,7 @@ spring:
   application:
     name: bookstoreservice
   datasource:
-    url: jdbc:postgresql://localhost:5432/learning
+    url: jdbc:postgresql://localhost:5832/book-store?prepareThreshold=0
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
