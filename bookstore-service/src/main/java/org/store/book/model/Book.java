@@ -1,15 +1,11 @@
 package org.store.book.model;
 
-
-import org.hibernate.annotations.GenericGenerator;
-
 import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -21,9 +17,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author ibodnar@amsoft-group.com
- */
 @Entity
 @Table(name = "books")
 @NoArgsConstructor
@@ -31,7 +24,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Book {
-
   @Id
   @Column(name = "isbn")
   private String isbn;

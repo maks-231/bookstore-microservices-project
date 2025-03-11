@@ -11,9 +11,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author ibodnar@amsoft-group.com
- */
 @Entity
 @Table(name = "authors")
 @NoArgsConstructor
@@ -21,7 +18,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Author {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;

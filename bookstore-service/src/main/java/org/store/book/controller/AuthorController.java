@@ -9,16 +9,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+//import org.store.book.aop.MonitoringTimed;
 import org.store.book.model.Author;
 import org.store.book.repository.AuthorRepository;
 
 import java.util.List;
 
 import jakarta.annotation.Resource;
-
-/**
- * @author ibodnar@amsoft-group.com
- */
 
 @RestController
 @RequestMapping("/author")

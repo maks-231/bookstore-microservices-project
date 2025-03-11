@@ -6,3 +6,19 @@ spring:
   # The property server will take default property files
   config:
     import: optional:configserver:http://localhost:8071
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        aop:
+#          interceptor:
+#            PerformanceMonitorInterceptor: TRACE
+
+logging:
+  level:
+    org:
+      store:
+        book:
+          profiler:
+            CustomPerformanceMonitorInterceptor: TRACE

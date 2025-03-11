@@ -16,10 +16,6 @@ import java.util.List;
 
 import jakarta.annotation.Resource;
 
-/**
- * @author ibodnar@amsoft-group.com
- */
-
 @RestController
 @RequestMapping("/publisher")
 @CrossOrigin(originPatterns = "*", maxAge = 3600)

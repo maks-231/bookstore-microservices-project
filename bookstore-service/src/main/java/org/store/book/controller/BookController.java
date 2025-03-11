@@ -16,10 +16,6 @@ import java.util.List;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 
-/**
- * @author ibodnar@amsoft-group.com
- */
-
 @RestController
 @RequestMapping("/book")
 @CrossOrigin(originPatterns = "*", maxAge = 3600)
@@ -35,7 +31,7 @@ public class BookController {
 
   @GetMapping("/genre/{genreId}")
   public List<Book> getAllBooksByGenre(@PathVariable Long genreId) {
-    return bookRepository.findAllByGenre_Id(genreId);
+    return bookRepository.findAllByGenreId(genreId);
   }
 
   @GetMapping("/{isbn}")

@@ -7,3 +7,18 @@ spring:
   config:
     import: optional:configserver:http://localhost:8071
 
+#ogging:
+#  level:
+#    org:
+#      springframework:
+#        aop:
+#          interceptor:
+#            PerformanceMonitorInterceptor: TRACE
+
+logging:
+  level:
+    org:
+      store:
+        book:
+          profiler:
+            CustomPerformanceMonitorInterceptor: TRACE

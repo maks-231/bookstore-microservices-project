@@ -35,10 +35,19 @@ management:
     web:
       exposure:
         include: "*"
+#  # Enable prometheus exporter
+#  metrics:
+#    export:
+#    prometheus:
+#      enabled: true
+#    ## Enable prometheus end point
+#    web:
+#      exposure:
+#        include: prometheus
 
 logging:
   level:
-    com.netflix: TRACE
+    com.netflix: INFO
     org.springframework: INFO
     com:
       mkyong: OFF

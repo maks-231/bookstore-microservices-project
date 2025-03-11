@@ -5,16 +5,11 @@ import org.store.book.model.Book;
 
 import java.util.List;
 
-/**
- * @author ibodnar@amsoft-group.com
- */
-
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-  List<Book> findAllByGenre_Id(long genreId);
+  List<Book> findAllByGenreId(long genreId);
 
   Book findBookByIsbn(String isbn);
 
   void deleteBookByIsbn(String isbn);
-
 }

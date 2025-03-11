@@ -11,10 +11,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author ibodnar@amsoft-group.com
- */
-
 @Entity
 @Table(name = "publishers")
 @NoArgsConstructor
