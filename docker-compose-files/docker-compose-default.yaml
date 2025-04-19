@@ -1,0 +1,156 @@
+version: '3.3'
+services:
+  book-database:
+    image: postgres:16.8-alpine3.21
+    ports:
+      - "5832:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "book"
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - ~/PostgreSQL/16/book/data:/var/lib/postgresql/data
+    networks:
+      backend:
+        aliases:
+          - "book-database-master"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 60s
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  author-database:
+    image: postgres:16.8-alpine3.21
+    ports:
+      - "5833:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "author"
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - ~/PostgreSQL/16/author/data:/var/lib/postgresql/data
+    networks:
+      backend:
+        aliases:
+          - "author-database-master"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 60s
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  genre-database:
+    image: postgres:16.8-alpine3.21
+    ports:
+      - "5834:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "genre"
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - ~/PostgreSQL/16/genre/data:/var/lib/postgresql/data
+    networks:
+      backend:
+        aliases:
+          - "genre-database-master"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 60s
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  publisher-database:
+    image: postgres:16.8-alpine3.21
+    ports:
+      - "5835:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "publisher"
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - ~/PostgreSQL/16/publisher/data:/var/lib/postgresql/data
+    networks:
+      backend:
+        aliases:
+          - "publisher-database-master"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 60s
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  config-service:
+    image: config-service:alpine
+    ports:
+      - "8071:8071"
+    networks:
+      backend:
+        aliases:
+          - "config-service"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 60s
+  eureka-service:
+    image: eureka-service:alpine
+    ports:
+      - "8761:8761"
+    depends_on:
+      - config-service
+    networks:
+      backend:
+        aliases:
+          - "eureka-service"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 60s
+  gateway-service:
+    image: gateway-service:alpine
+    ports:
+      - "8090:8090"
+    depends_on:
+      - config-service
+      - eureka-service
+    networks:
+      backend:
+        aliases:
+          - "gateway-service"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 60s
+networks:
+  backend:
+    external: true

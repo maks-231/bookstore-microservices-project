@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: "postgres"
       POSTGRES_DB: "book-store"
     volumes:
-      - /D/PostgreSQL/data:/var/lib/postgresql/data
+      - ~/PostgreSQL/15/book-store/data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/1-init.sql
       - ./data.sql:/docker-entrypoint-initdb.d/2-data.sql
     networks:

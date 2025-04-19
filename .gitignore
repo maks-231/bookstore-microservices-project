@@ -6,6 +6,7 @@
 !.idea/.name
 !.idea/vcs.xml
 **/*.iml
+**/*.tar
 **/*.ipr
 **/out/
 

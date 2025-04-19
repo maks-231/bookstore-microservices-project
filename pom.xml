@@ -10,33 +10,32 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>eureka-service</module>
+    <module>config-service</module>
+    <module>gateway-service</module>
     <module>bookstore-service</module>
-    <module>eureka-server</module>
-    <module>config-server</module>
-    <module>gateway-server</module>
+    <module>author-service</module>
+    <module>genre-service</module>
+    <module>publisher-service</module>
+    <module>book-service</module>
   </modules>
 
   <profiles>
     <profile>
-      <id>Dev</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
+      <id>default</id>
       <properties>
-        <env>dev</env>
-        <spring.profiles.active>dev</spring.profiles.active>
+        <env>default</env>
+        <spring.profiles.active>default</spring.profiles.active>
       </properties>
     </profile>
-
     <profile>
-      <id>QA</id>
+      <id>prod</id>
       <properties>
-        <env>qa</env>
-        <spring.profiles.active>qa</spring.profiles.active>
+        <env>prod</env>
+        <spring.profiles.active>prod</spring.profiles.active>
       </properties>
     </profile>
   </profiles>
-
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
@@ -52,13 +51,12 @@
     <spring-cloud.version>2023.0.2</spring-cloud.version>
     <spring-boot-autoconfigure.version>3.2.12</spring-boot-autoconfigure.version>
     <spring-boot-starter-web.version>3.2.12</spring-boot-starter-web.version>
-<!--    <spring-boot-starter-oauth2-resource-server.version>3.2.12</spring-boot-starter-oauth2-resource-server.version>-->
-<!--    <spring-boot-starter-oauth2-client.version>3.2.12</spring-boot-starter-oauth2-client.version>-->
     <spring-boot-starter-security.version>3.28.18</spring-boot-starter-security.version>
     <spring-cloud-starter-netflix-eureka.version>4.1.1</spring-cloud-starter-netflix-eureka.version>
     <spring-cloud-starter-netflix-eureka-client.version>4.1.1</spring-cloud-starter-netflix-eureka-client.version>
     <spring-cloud-starter-netflix-eureka-server.version>4.1.1</spring-cloud-starter-netflix-eureka-server.version>
     <spring-cloud-starter-gateway.version>4.1.1</spring-cloud-starter-gateway.version>
+    <spring-cloud-config-server.version>4.1.1</spring-cloud-config-server.version>
     <spring-webflux.version>6.2.0</spring-webflux.version>
     <gson.version>2.10.1</gson.version>
     <jackson-core.version>2.15.4</jackson-core.version>
@@ -67,6 +65,7 @@
     <postgresql.version>42.7.3</postgresql.version>
     <commons-dbcp2.version>2.12.0</commons-dbcp2.version>
     <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
+    <modelmapper.version>3.2.2</modelmapper.version>
   </properties>
 
   <dependencies>

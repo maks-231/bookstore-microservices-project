@@ -1,0 +1,47 @@
+AUTHOR:
+  HOST: author-service
+  PORT: 8092
+GENRE:
+  HOST: genre-service
+  PORT: 8093
+PUBLISHER:
+  HOST: publisher-service
+  PORT: 8094
+BOOK:
+  HOST: book-service
+  PORT: 8095
+
+spring:
+  application:
+    name: bookstore-service
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: true
+    discovery:
+      enabled: true
+server:
+  port: 8091
+management:
+  endpoint:
+    health:
+      diskspace:
+        enabled: true
+    beans:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+eureka:
+  instance:
+    hostname: bookstore-service
+    preferIpAddress: false
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://eureka-service:8761/eureka

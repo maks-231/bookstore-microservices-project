@@ -9,10 +9,10 @@ LABEL maintainer=""
 ARG JAR_FILE
 
 # Add the application's jar to the container
-COPY ${JAR_FILE} app.war
+COPY ${JAR_FILE} app.jar
 
 #unpackage jar file
-RUN mkdir -p target/dependency && (cd target/dependency; jar -xf /app.war)
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf /app.jar)
 
 #stage 2
 #Same Java runtime
@@ -22,12 +22,12 @@ FROM openjdk:17-alpine
 VOLUME /tmp
 
 #Copy unpackaged application to new container
-ARG DEPENDENCY=target/dependency
-COPY --from=build ${DEPENDENCY}/WEB-INF/lib /app/lib
+ARG DEPENDENCY=/target/dependency
+COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
-COPY --from=build ${DEPENDENCY}/WEB-INF/classes /app
+COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
-#RUN export ENCRYPT_KEY=IMSYMMETRIC
+EXPOSE 8091
 
 #execute the application
-ENTRYPOINT ["java","-cp","app:app/lib/*","org.store.book.BookStoreApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","org.store.book.StoreApp"]

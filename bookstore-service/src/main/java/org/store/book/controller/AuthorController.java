@@ -9,39 +9,37 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-//import org.store.book.aop.MonitoringTimed;
-import org.store.book.model.Author;
-import org.store.book.repository.AuthorRepository;
 
 import java.util.List;
 
 import jakarta.annotation.Resource;
+import org.store.book.dto.AuthorDto;
+import org.store.book.service.AuthorService;
 
 @RestController
 @RequestMapping("/author")
-@CrossOrigin(originPatterns = "*", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthorController {
-
   @Resource
-  private AuthorRepository authorRepository;
+  private AuthorService authorService;
 
   @GetMapping
-  public List<Author> getAllAuthors() {
-    return authorRepository.findAll();
+  public List<AuthorDto> getAllAuthors() {
+    return authorService.findAll();
   }
 
   @PostMapping
-  public void createNewAuthor(@RequestBody Author author) {
-    authorRepository.save(author);
+  public void createNewAuthor(@RequestBody AuthorDto author) {
+    authorService.createNewAuthor(author);
   }
 
   @PutMapping
-  public void updateAuthor(@RequestBody Author author) {
-    authorRepository.save(author);
+  public void updateAuthor(@RequestBody AuthorDto author) {
+    authorService.updateAuthor(author);
   }
 
   @DeleteMapping("/{id}")
-  public void deleteAuthorById(@PathVariable long id) {
-    authorRepository.deleteById(id);
+  public void deleteAuthorById(@PathVariable Long id) {
+    authorService.deleteAuthorById(id);
   }
 }

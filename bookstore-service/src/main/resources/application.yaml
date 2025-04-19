@@ -2,22 +2,19 @@ spring:
   main:
     lazy-initialization: true
   application:
-    name: bookstoreservice
-  # The property server will take default property files
+    name: bookstore-service
   config:
     import: optional:configserver:http://localhost:8071
 
-#logging:
-#  level:
-#    org:
-#      springframework:
-#        aop:
-#          interceptor:
-#            PerformanceMonitorInterceptor: TRACE
-
 logging:
+  group:
+    tomcat: "org.apache.catalina,org.apache.coyote,org.apache.tomcat"
   level:
+    level:
+      root: "warn"
     org:
+      springframework:
+        web: "debug"
       store:
         book:
           profiler:

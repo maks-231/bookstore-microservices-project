@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: publisher-service
+  liquibase:
+      enabled: false
+  datasource:
+    url: jdbc:postgresql://publisher-database-master:5432/publisher?prepareThreshold=0
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: true
+    discovery:
+      enabled: true
+server:
+  port: 8094
+  error:
+    whitelabel:
+      enabled: false
+hibernate:
+  show_sql: true
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+  batch.size: 200
+  hbm2ddl.auto: update
+management:
+  endpoint:
+    health:
+      diskspace:
+        enabled: true
+    beans:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+eureka:
+  instance:
+    hostname: publisher-service
+    preferIpAddress: false
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://eureka-service:8761/eureka

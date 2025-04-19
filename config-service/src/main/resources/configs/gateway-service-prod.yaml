@@ -1,0 +1,58 @@
+gatewayserver:
+  property: Development property
+server:
+  port: 8090
+spring:
+  cloud:
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+        enabled: true
+        lowerCaseServiceId: true
+#      default-filters:
+#        - TokenRelay=
+#      routes:
+#        - id: bookstore-service
+#          uri: lb://BOOKSTORE-SERVICE
+#          predicates:
+#            - Path=/bookstore/**
+#          filters:
+#            - RewritePath=/bookstore/(?<path>.*), /$\{path}
+  application:
+    name: gateway-service
+logging:
+  level:
+    com.netfliex: DEBUG
+    org.springframework: DEBUG
+    com:
+      mkyong: OFF
+      zaxxer: OFF
+    root: OFF
+eureka:
+  instance:
+    hostname: gateway-service
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://eureka-service:8761/eureka/
+management:
+  endpoints:
+    health:
+      show-details: always
+      diskspace:
+        enabled: true
+    beans:
+      enabled: true
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    web:
+      exposure:
+        include: 'gateway'
+    enabled-by-default: true

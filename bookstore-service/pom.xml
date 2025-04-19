@@ -8,15 +8,16 @@
   </parent>
 
   <artifactId>bookstore-service</artifactId>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
   <name>book store service</name>
   <url>http://maven.apache.org</url>
 
   <properties>
-    <docker.image.name>book-store</docker.image.name>
-    <start-class>org.store.book.BookStoreApplication</start-class>
-    <java.version>17</java.version>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <docker.image.name>bookstore-service</docker.image.name>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
@@ -26,15 +27,10 @@
       <artifactId>spring-boot</artifactId>
       <version>${spring-boot.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>${postgresql.version}</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-starter-data-jpa</artifactId>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -48,6 +44,7 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+      <version>${spring-boot-starter-web.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -70,32 +67,11 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.liquibase</groupId>
-      <artifactId>liquibase-core</artifactId>
-      <version>${liquibase.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.liquibase</groupId>
-      <artifactId>liquibase-maven-plugin</artifactId>
-      <version>${liquibase.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-dbcp2</artifactId>
-      <version>${commons-dbcp2.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-commons</artifactId>
-      <version>${spring-data-commons.version}</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-relational -->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-relational</artifactId>
-      <version>${spring-data-relational.version}</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.data</groupId>-->
+<!--      <artifactId>spring-data-commons</artifactId>-->
+<!--      <version>${spring-data-commons.version}</version>-->
+<!--    </dependency>-->
     <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
     <dependency>
       <groupId>org.apache.maven.plugins</groupId>
@@ -112,10 +88,19 @@
       <artifactId>javanna</artifactId>
       <version>1.1</version>
     </dependency>
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-aop</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
+    <dependency>
+      <groupId>org.modelmapper</groupId>
+      <artifactId>modelmapper</artifactId>
+      <version>${modelmapper.version}</version>
     </dependency>
   </dependencies>
 
@@ -142,25 +127,9 @@
               <configuration>
                 <classifier>spring-boot</classifier>
                 <mainClass>
-                  org.store.book.BookStoreApplication
+                    org.store.book.StoreApp
                 </mainClass>
               </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.liquibase</groupId>
-          <artifactId>liquibase-maven-plugin</artifactId>
-          <configuration>
-            <propertyFile>target/classes/liquibase.properties</propertyFile>
-          </configuration>
-          <executions>
-            <execution>
-              <id>book-store-db-update</id>
-              <phase>process-resources</phase>
-              <goals>
-                <goal>update</goal>
-              </goals>
             </execution>
           </executions>
         </plugin>
@@ -169,7 +138,7 @@
           <artifactId>maven-resources-plugin</artifactId>
           <executions>
             <execution>
-              <id>copy-resources-1</id>
+              <id>copy-resources</id>
               <!-- here the phase you need -->
               <phase>validate</phase>
               <goals>
@@ -183,9 +152,6 @@
                     <filtering>true</filtering>
                   </resource>
                 </resources>
-                <nonFilteredFileExtensions>
-                  <nonFilteredFileExtension>jks</nonFilteredFileExtension>
-                </nonFilteredFileExtensions>
               </configuration>
             </execution>
           </executions>
@@ -198,13 +164,13 @@
             <imageName>${docker.image.name}:${docker.image.tag}</imageName>
             <dockerDirectory>${basedir}/target/dockerfile</dockerDirectory>
             <buildArgs>
-              <JAR_FILE>${project.build.finalName}.war</JAR_FILE>
+              <JAR_FILE>${project.build.finalName}-spring-boot.jar</JAR_FILE>
             </buildArgs>
             <resources>
               <resource>
                 <targetPath>/</targetPath>
                 <directory>${project.build.directory}</directory>
-                <include>${project.build.finalName}.war</include>
+                <include>${project.build.finalName}-spring-boot.jar</include>
               </resource>
             </resources>
           </configuration>
@@ -220,37 +186,4 @@
         </plugin>
       </plugins>
   </build>
-  <profiles>
-    <profile>
-      <id>default</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <build>
-        <filters>
-          <filter>src/main/resources/default/db.properties</filter>
-        </filters>
-        <resources>
-          <resource>
-            <directory>src/main/resources</directory>
-            <filtering>true</filtering>
-          </resource>
-        </resources>
-      </build>
-    </profile>
-    <profile>
-      <id>Dev</id>
-      <build>
-        <filters>
-          <filter>src/main/resources/dev/db.properties</filter>
-        </filters>
-        <resources>
-          <resource>
-            <directory>src/main/resources</directory>
-            <filtering>true</filtering>
-          </resource>
-        </resources>
-      </build>
-    </profile>
-  </profiles>
 </project>

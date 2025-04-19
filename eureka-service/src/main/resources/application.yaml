@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: eureka-service
+  config:
+    import: optional:configserver:http://localhost:8071
+
+logging:
+  level:
+    org:
+      springframework:
+        web: "debug"

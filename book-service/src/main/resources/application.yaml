@@ -1,0 +1,19 @@
+spring:
+  main:
+    lazy-initialization: true
+  application:
+    name: book-service
+  config:
+    import: optional:configserver:http://localhost:8071
+logging:
+  group:
+    tomcat: "org.apache.catalina,org.apache.coyote,org.apache.tomcat"
+  level:
+    level:
+      root: "warn"
+    org:
+      springframework:
+        web: "debug"
+      book:
+        profiler:
+          CustomPerformanceMonitorInterceptor: TRACE

@@ -1,0 +1,90 @@
+gatewayserver:
+  property: Default property
+server:
+  port: 8090
+spring:
+  webflux:
+    enabled: false
+  cloud:
+    gateway:
+      enabled: true
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods:
+#              - GET
+#              - POST
+#              - PUT
+#              - DELETE
+#        add-to-simple-url-handler-mapping: true
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+#      routes:
+#        - id: bookstore
+#          uri: lb://BOOKSTORESERVICE
+#          predicates:
+#            - Path=/bookstore-backend/**
+#          metadata:
+#            cors:
+#              allowedOrigins: '*'
+#              allowedMethods:
+#                - GET
+#                - POST
+#                - PUT
+#                - DELETE
+#              allowedHeaders: '*'
+#              maxAge: 30
+#          filters:
+#            - RewritePath=/bookstore-backend/(?<segment>.*), /$\{segment}
+#
+#        - id: author
+#          uri: lb://AUTHORSERVICE
+#          predicates:
+#            - Path=/author-backend/**
+#          filters:
+#            - RewritePath=/author-backend/(?<segment>.*), /$\{segment}
+#        - id: frontend
+#          uri: http://localhost:4200
+#          predicates:
+#            - Path=/web/**
+#          filters:
+#            - RewritePath=/web/(?<segment>.*), /$\{segment}
+
+  application:
+    name: gateway-service
+eureka:
+  instance:
+    hostname: eureka-service
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    health:
+      show-details: always
+      diskspace:
+        enabled: true
+    beans:
+      enabled: true
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    web:
+      exposure:
+        include: 'gateway'
+    enabled-by-default: true
+
+logging:
+  level:
+    com.netflix: DEBUG
+
+

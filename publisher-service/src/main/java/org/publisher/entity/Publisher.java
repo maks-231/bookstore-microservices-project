@@ -1,0 +1,21 @@
+package org.publisher.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "publishers")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
+public class Publisher {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
+
+  @Column(name = "name")
+  private String name;
+}

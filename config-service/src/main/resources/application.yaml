@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: config-service
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/configs
+server:
+  port: 8071
+  error:
+    whitelabel:
+      enabled: false
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
