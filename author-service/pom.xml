@@ -29,6 +29,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
@@ -200,6 +205,8 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>${spotify.version}</version>
                 <configuration>
+                    <serverId>docker-hub</serverId>
+                    <registryUrl>docker.io/maks231docker/author-service</registryUrl>
                     <imageName>${docker.image.name}:${docker.image.tag}</imageName>
                     <dockerDirectory>${basedir}/target/dockerfile</dockerDirectory>
                     <buildArgs>
@@ -219,7 +226,31 @@
                         <phase>install</phase>
                         <goals>
                             <goal>build</goal>
+                            <goal>push</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                        <id>tag-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <image>${docker.image.name}:${docker.image.tag}</image>
+                            <newName>maks231docker/${docker.image.name}:${docker.image.tag}</newName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>push-image</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>push</goal>
+                        </goals>
+                        <configuration>
+                            <serverId>docker-hub</serverId>
+                            <registryUrl>docker.io/maks231docker/author-service</registryUrl>
+                            <imageName>maks231docker/${docker.image.name}:${docker.image.tag}</imageName>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

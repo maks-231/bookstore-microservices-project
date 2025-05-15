@@ -10,15 +10,27 @@ spring:
         locator:
         enabled: true
         lowerCaseServiceId: true
-#      default-filters:
-#        - TokenRelay=
-#      routes:
-#        - id: bookstore-service
-#          uri: lb://BOOKSTORE-SERVICE
-#          predicates:
-#            - Path=/bookstore/**
-#          filters:
-#            - RewritePath=/bookstore/(?<path>.*), /$\{path}
+      routes:
+        - id: author-service
+          uri: lb://AUTHOR-SERVICE
+          predicates:
+            - Path=/author/**
+        - id: publisher-service
+          uri: lb://PUBLISHER-SERVICE
+          predicates:
+            - Path=/publisher/**
+        - id: genre-service
+          uri: lb://GENRE-SERVICE
+          predicates:
+            - Path=/genre/**
+        - id: book-service
+          uri: lb://BOOK-SERVICE
+          predicates:
+            - Path=/book/**
+        - id: bookstore-service
+          uri: lb://BOOKSTORE-SERVICE
+          predicates:
+            - Path=/bookstore/**
   application:
     name: gateway-service
 logging:
@@ -52,7 +64,7 @@ management:
       enabled: true
     info:
       enabled: true
-    web:
-      exposure:
-        include: 'gateway'
+#    web:
+#      exposure:
+#        include: 'gateway'
     enabled-by-default: true

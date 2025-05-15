@@ -78,9 +78,9 @@ management:
       enabled: true
     info:
       enabled: true
-    web:
-      exposure:
-        include: 'gateway'
+#    web:
+#      exposure:
+#        include: 'gateway'
     enabled-by-default: true
 
 logging:
